@@ -1,0 +1,17 @@
+@import "tailwindcss";
+body {
+  background-color: #282c33;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-scroll {
+  animation: scroll 15s linear infinite;
+}
