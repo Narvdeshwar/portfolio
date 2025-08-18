@@ -3,6 +3,7 @@ import HeroSection from "./comp/HeroSection";
 import ProjectComp from "./comp/ProjectComp";
 import { SkillsComp } from "./comp/SkillsComp";
 import AboutComp from "./comp/AboutComp";
+import ContactComp from "./comp/ContactComp";
 function Homepage() {
   return (
     <>
@@ -13,6 +14,7 @@ function Homepage() {
       </div>
       <SkillsComp />
       <AboutComp />
+      <ContactComp />
     </>
   );
 }
