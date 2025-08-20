@@ -24,26 +24,24 @@ function HeroSection() {
       </div>
 
       {/* right */}
-      <div className="relative h-[300px] sm:h-[400px] md:h-full w-full md:w-1/2 flex justify-center items-center">
+      <div className="relative w-full md:w-1/2 flex justify-center items-center mb-2">
         <img
           src={bgdesign}
-          alt=""
-          className="absolute inset-0 top-10 sm:top-20 left-10 sm:left-20 opacity-70 max-w-[90%] mx-auto"
+          className="absolute w-[60%] -bottom-0 z-10"
         />
         <img
           src={Hero}
           alt="Profile Illustration"
-          className="z-10 absolute max-w-[70%] sm:max-w-[60%] md:max-w-full"
+          className="z-20"
         />
         <img
           src={dot}
-          alt=""
-          className="z-20 bottom-20 sm:bottom-40 absolute right-10 sm:right-40 size-12 sm:size-[84px]"
+          className="w-5"
         />
 
         <Button
           title="Currently building my portfolio"
-          className="bottom-6 sm:bottom-16 absolute px-3 py-1 flex gap-2 items-center text-xs sm:text-sm"
+          className="text-nowrap absolute -bottom-13 flex gap-2 items-center"
           variant="default"
         >
           <div className="size-3 sm:size-4 bg-[#cb42c3] rounded"></div>

@@ -8,8 +8,8 @@ function Homepage() {
   return (
     <>
       <HeroSection />
-      {/* <LeftOverlay />
-      <div className="relative overflow-hidden">
+      <LeftOverlay />
+      {/*<div className="relative overflow-hidden">
         <ProjectComp />
       </div>
       <SkillsComp />
