@@ -7,7 +7,7 @@ function App() {
     <div className="main mx-auto">
       <Header />
       <Homepage />
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 }

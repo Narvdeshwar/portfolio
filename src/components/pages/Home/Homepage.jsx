@@ -8,13 +8,13 @@ function Homepage() {
   return (
     <>
       <HeroSection />
-      <LeftOverlay />
+      {/* <LeftOverlay />
       <div className="relative overflow-hidden">
         <ProjectComp />
       </div>
       <SkillsComp />
       <AboutComp />
-      <ContactComp />
+      <ContactComp /> */}
     </>
   );
 }
