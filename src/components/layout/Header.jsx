@@ -7,7 +7,7 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="h-[70px] flex justify-between items-center w-[90%] mx-auto relative sticky top-0">
+    <header className="h-[70px] flex justify-between items-center w-screen p-3 md:w-[90%] mx-auto relative sticky top-0 z-1000 shadow-xl trasition-all duration-600 rounded-full mt-3 border border-slate-900/70">
       {/* Logo */}
       <div className="flex items-baseline">
         <p className="text-2xl italic font-semibold border-[#cb42c3] border-b-4 rounded-xl shadow-2xl">

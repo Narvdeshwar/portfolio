@@ -9,9 +9,9 @@ function Homepage() {
     <>
       <HeroSection />
       <LeftOverlay />
-      {/*<div className="relative overflow-hidden">
-        <ProjectComp />
-      </div>
+      <ProjectComp />
+
+      {/* 
       <SkillsComp />
       <AboutComp />
       <ContactComp /> */}
