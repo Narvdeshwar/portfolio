@@ -32,13 +32,16 @@ export const SkillsComp = () => {
   return (
     <div className="w-[90%] mx-auto flex flex-col gap-6">
       {/* Header */}
-      <div className="flex items-center w-full">
-        <p className="text-5xl font-bold">
-          <span className="text-[#cb42c3] italic"># </span>Skills
-        </p>
-        <p className="w-[50%] bg-[#cb42c3] h-1 ml-2"></p>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        {/* Title */}
+        <div className="flex items-center flex-1 min-w-[150px]">
+          <p className="text-[clamp(1.5rem,5vw,3rem)] font-semibold">
+            <span className="text-[#cb42c3] italic"># </span>Skills
+          </p>
+          <div className="flex-1 h-1 ml-2 bg-[#cb42c3]"></div>
+        </div>
       </div>
-      <div className="w-full overflow-hidden py-6 relative">
+      <div className="w-full overflow-hidden py-6 relative -mt-10">
         <div className="flex gap-8 animate-scroll">
           {duplicatedSkills.map((skill, index) => (
             <div

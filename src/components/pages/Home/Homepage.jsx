@@ -10,10 +10,8 @@ function Homepage() {
       <HeroSection />
       <LeftOverlay />
       <ProjectComp />
-
-      {/* 
       <SkillsComp />
-      <AboutComp />
+      {/* <AboutComp />
       <ContactComp /> */}
     </>
   );
