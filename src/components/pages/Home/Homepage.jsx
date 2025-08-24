@@ -11,8 +11,9 @@ function Homepage() {
       <LeftOverlay />
       <ProjectComp />
       <SkillsComp />
-      {/* <AboutComp />
-      <ContactComp /> */}
+      <AboutComp />
+      
+      <ContactComp />
     </>
   );
 }
