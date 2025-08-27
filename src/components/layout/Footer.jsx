@@ -5,7 +5,7 @@ import { SiLeetcode } from "react-icons/si";
 function Footer() {
   return (
     <div className="border-t mt-6 px-4 py-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 place-items-center md:place-items-start">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 w-[90%] mx-auto">
         {/* Left Section */}
         <div className="text-center md:text-left">
           <p className="border-b-4 inline-block px-2 py-1 border-[#cb42c3] rounded-md text-lg font-semibold">
@@ -14,9 +14,9 @@ function Footer() {
         </div>
 
         {/* Right Section */}
-        <div className="flex flex-col items-center md:items-end border border-gray-500 p-3 rounded-md gap-2 text-gray-400 w-fit">
-          <p className="font-medium">Media</p>
-          <div className="flex gap-4 text-xl">
+        <div className="flex flex-col md:flex-row md:items-center md:gap-4 border border-gray-500 p-3 rounded-md text-gray-400">
+          <p className="font-medium text-center md:text-left">Social Links:</p>
+          <div className="flex gap-4 text-xl justify-center md:justify-start">
             <a
               href="#"
               target="_blank"
