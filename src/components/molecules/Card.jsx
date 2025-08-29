@@ -4,7 +4,7 @@ import { GithubIcon } from "lucide-react";
 
 function Card({ project }) {
   return (
-    <div className="border border-gray-500 shadow-md rounded-md overflow-hidden">
+    <div className="border border-gray-500 shadow-md rounded-md overflow-hidden glass">
       <OptimisedImage src={project.image} alt={project.title} className="!rounded-t-md"/>
 
       {/* Technologies */}

@@ -1,9 +1,27 @@
 @import "tailwindcss";
 body {
-  background-color: #282c33;
-  color: white;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #f8fafc;
   font-family: "Inter", sans-serif;
 }
+
+/* Glassy card style */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* Gradient accent for headings or buttons */
+.gradient-text {
+  background: linear-gradient(90deg, #cb42c3, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
