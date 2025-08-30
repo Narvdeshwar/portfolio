@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Card from "../../../molecules/Card";
-import projectsData from "../../../../constants/projectData.json";
 import { motion } from "framer-motion";
+import projectsData from "../../../../constants/projectData";
 
 const containerVariants = {
   hidden: { opacity: 0 },
