@@ -1,4 +1,3 @@
-import React from "react";
 import { bgdesign, dot, Hero } from "../../../../assets";
 import Button from "../../../atoms/Button";
 
@@ -6,8 +5,8 @@ function HeroSection() {
   return (
     <div className="h-[calc(100vh-70px)] flex flex-col md:flex-row justify-between p-6 md:p-10 items-center w-[90%] mx-auto gap-10">
       {/* left */}
-      <div className="w-full md:w-1/2 space-y-6 text-center md:text-left">
-        <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-snug">
+      <div className="w-full md:w-1/2 space-y-6 text-center md:text-left mt-24 md:mt-20">
+        <p className="text-[clamp(16px,5vw,32px)] font-extrabold leading-snug">
           Hi, I’m <span className="text-[#cb42c3]">Narvdeshwar</span>
           <br />
           A Passionate{" "}
