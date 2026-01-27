@@ -1,4 +1,4 @@
-import { GithubIcon, Linkedin } from "lucide-react";
+import { GithubIcon, Linkedin, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
 import socialUrl from "../../../../constants/socialurls";
 
@@ -21,6 +21,9 @@ function LeftOverlay() {
         </Link>
         <Link to={socialUrl.linkedin} target="_blank" rel="noopener noreferrer">
           <Linkedin className="size-6 hover:text-[#cb42c3]" />
+        </Link>
+        <Link to={socialUrl.twitter} target="_blank" rel="noopener noreferrer">
+          <Twitter className="size-6 hover:text-[#cb42c3]" />
         </Link>
         <Link to={socialUrl.leetcode} target="_blank" rel="noopener noreferrer">
           <img

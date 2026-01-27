@@ -5,11 +5,11 @@
   "type": "module",
   "homepage": "https://github.com/Narvdeshwar/portfolio",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite --port 3000 --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy":"npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
+    "lenis": "^1.3.17",
     "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

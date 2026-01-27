@@ -1,18 +1,16 @@
-import LeftOverlay from "./comp/LeftOverlay";
-import HeroSection from "./comp/HeroSection";
-import ProjectComp from "./comp/ProjectComp";
+import MinimalHero from "./comp/MinimalHero";
+import MinimalProjects from "./comp/MinimalProjects";
 import { SkillsComp } from "./comp/SkillsComp";
 import AboutComp from "./comp/AboutComp";
 import ContactComp from "./comp/ContactComp";
+
 function Homepage() {
   return (
     <>
-      <HeroSection />
-      <LeftOverlay />
-      <ProjectComp />
+      <MinimalHero />
+      <MinimalProjects />
       <SkillsComp />
       <AboutComp />
-      
       <ContactComp />
     </>
   );

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Card from "../../../molecules/Card";
 import { motion } from "framer-motion";
 import projectsData from "../../../../constants/projectData";
+import { ArrowRight } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -24,34 +25,35 @@ const cardVariants = {
 
 function ProjectComp() {
   return (
-    <div className="flex flex-col gap-6 w-[90%] mx-auto mt-62 md:mt-10 p-3">
+    <div className="w-full max-w-7xl mx-auto flex flex-col gap-10 py-20 px-6">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        {/* Title */}
-        <div className="flex items-center flex-1 min-w-[150px]">
-          <p className="text-[clamp(1.5rem,5vw,3rem)] font-semibold">
-            <span className="text-[#cb42c3] italic"># </span>Projects
-          </p>
-          <div className="flex-1 h-1 ml-2 bg-[#cb42c3]"></div>
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            <span className="text-blue-500 font-mono text-2xl mr-2">02.</span>
+            Projects
+          </h2>
+          <div className="h-px bg-gray-800 w-32 hidden sm:block"></div>
         </div>
 
-        {/* Link */}
-        <div className="bg-gradient-to-r from-[#da92d5] to-[#cb42c3] bg-no-repeat bg-[length:0%_2px] bg-left-bottom transition-all duration-700 hover:bg-[length:100%_2px] cursor-pointer text-nowrap py-1">
-          <Link to="/work" className="text-sm md:text-base">
-            View all {"-->"}
-          </Link>
-        </div>
+        <Link
+          to="/work"
+          className="group flex items-center gap-2 text-sm font-mono text-blue-400 hover:text-blue-300 transition-colors"
+        >
+          View Archive <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+        </Link>
       </div>
 
       {/* Projects Grid */}
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-3"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         variants={containerVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
       >
-        {projectsData.map((project, idx) => (
-          <motion.div key={idx} variants={cardVariants}>
+        {projectsData.slice(0, 3).map((project, idx) => (
+          <motion.div key={idx} variants={cardVariants} className="h-full">
             <Card project={project} />
           </motion.div>
         ))}
