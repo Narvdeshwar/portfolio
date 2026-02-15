@@ -109,7 +109,7 @@ const AboutPage = () => {
               <h3 className="text-sm font-mono text-blue-500 uppercase tracking-widest mb-8">
                 Experience
               </h3>
-              <div className="flex flex-col border-t border-white/10">
+              <div className="flex flex-col  border-white/10">
                 {experiences.map((exp, index) => (
                   <div key={index} className="py-8 border-b border-white/10 grid grid-cols-1 sm:grid-cols-12 gap-4">
                     <div className="sm:col-span-3 font-mono text-sm text-gray-500 flex flex-col justify-between items-start sm:items-start">

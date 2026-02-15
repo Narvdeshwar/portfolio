@@ -9,48 +9,48 @@ const skillCategories = [
   {
     title: "Languages",
     skills: [
-      { icon: <SiGo />, name: "Golang" },
-      { icon: <SiJavascript />, name: "JavaScript" },
-      { icon: <SiTypescript />, name: "TypeScript" },
-      { icon: <SiHtml5 />, name: "HTML5" },
-      { icon: <SiCss3 />, name: "CSS3" },
+      { icon: <SiGo />, name: "Golang", color: "#00ADD8" },
+      { icon: <SiJavascript />, name: "JavaScript", color: "#F7DF1E" },
+      { icon: <SiTypescript />, name: "TypeScript", color: "#3178C6" },
+      { icon: <SiHtml5 />, name: "HTML5", color: "#E34F26" },
+      { icon: <SiCss3 />, name: "CSS3", color: "#1572B6" },
     ]
   },
   {
     title: "Backend & Database",
     skills: [
-      { icon: <SiNodedotjs />, name: "Node.js" },
-      { icon: <SiPostgresql />, name: "PostgreSQL" },
-      { icon: <SiMongodb />, name: "MongoDB" },
-      { icon: <SiRedis />, name: "Redis" },
-      { icon: <SiRabbitmq />, name: "RabbitMQ" },
+      { icon: <SiNodedotjs />, name: "Node.js", color: "#339933" },
+      { icon: <SiPostgresql />, name: "PostgreSQL", color: "#4169E1" },
+      { icon: <SiMongodb />, name: "MongoDB", color: "#47A248" },
+      { icon: <SiRedis />, name: "Redis", color: "#DC382D" },
+      { icon: <SiRabbitmq />, name: "RabbitMQ", color: "#FF6600" },
     ]
   },
   {
     title: "Frameworks & Libraries",
     skills: [
-      { icon: <SiReact />, name: "React" },
-      { icon: <SiShadcnui />, name: "Shadcn UI" },
-      { icon: <SiRedux />, name: "Redux" },
-      { icon: <SiTailwindcss />, name: "Tailwind" },
-      { icon: <SiVite />, name: "Vite" },
+      { icon: <SiReact />, name: "React", color: "#61DAFB" },
+      { icon: <SiShadcnui />, name: "Shadcn UI", color: "#FFFFFF" },
+      { icon: <SiRedux />, name: "Redux", color: "#764ABC" },
+      { icon: <SiTailwindcss />, name: "Tailwind", color: "#06B6D4" },
+      { icon: <SiVite />, name: "Vite", color: "#646CFF" },
     ]
   },
   {
     title: "Cloud & DevOps",
     skills: [
-      { icon: <SiAmazon />, name: "AWS" },
-      { icon: <SiGoogle />, name: "Google Cloud" },
-      { icon: <SiDocker />, name: "Docker" },
-      { icon: <SiGit />, name: "Git" },
-      { icon: <SiPostman />, name: "Postman" },
+      { icon: <SiAmazon />, name: "AWS", color: "#FF9900" },
+      { icon: <SiGoogle />, name: "Google Cloud", color: "#4285F4" },
+      { icon: <SiDocker />, name: "Docker", color: "#2496ED" },
+      { icon: <SiGit />, name: "Git", color: "#F05032" },
+      { icon: <SiPostman />, name: "Postman", color: "#FF6C37" },
     ]
   }
 ];
 
 export const SkillsComp = () => {
   return (
-    <section className="py-24 px-6 border-t border-white/5">
+    <section className="py-24 px-6  border-white/5">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
           <h2 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-4">
@@ -75,12 +75,21 @@ export const SkillsComp = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: index * 0.05 }}
                     viewport={{ once: true }}
-                    className="group bg-[#121212] p-8 flex flex-col items-center justify-center gap-4 hover:bg-white/5 transition-colors"
+                    className="group bg-[#121212] p-8 flex flex-col items-center justify-center gap-4 hover:bg-white/5 transition-all duration-500 relative overflow-hidden"
                   >
-                    <div className="text-3xl text-gray-500 group-hover:text-white transition-colors duration-500">
+                    {/* Hover Glow */}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+                      style={{ backgroundColor: skill.color }}
+                    ></div>
+
+                    <div
+                      className="text-3xl transition-all duration-500 transform group-hover:scale-110 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                      style={{ color: skill.color }}
+                    >
                       {skill.icon}
                     </div>
-                    <span className="text-xs font-mono text-gray-500 uppercase tracking-widest group-hover:text-blue-500 transition-colors">
+                    <span className="text-xs font-mono text-gray-500 uppercase tracking-widest group-hover:text-white transition-colors">
                       {skill.name}
                     </span>
                   </motion.div>

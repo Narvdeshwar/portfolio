@@ -1,10 +1,10 @@
 import React from "react";
-import { herosecond } from "../../../../assets";
+import { herosecond_v2 as herosecond } from "../../../../assets";
 import { motion } from "framer-motion";
 
 function AboutComp() {
   return (
-    <section className="py-32 px-6 border-t border-white/5">
+    <section className="py-32 px-6  border-white/5">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
         {/* Left: Sticky Header/Image */}
@@ -12,14 +12,20 @@ function AboutComp() {
           <h2 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-8">
             04. / About Me
           </h2>
-          <div className="relative overflow-hidden w-full aspect-[3/4] max-w-sm rounded-[1px]">
-            <img
-              src={herosecond}
-              alt="Narvdeshwar"
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-            />
-            {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div className="relative group max-w-sm">
+            {/* Corner Accents */}
+            <div className="absolute -top-3 -right-3 w-12 h-12  border-r border-white/20"></div>
+            <div className="absolute -bottom-3 -left-3 w-12 h-12 border-b border-l border-white/20"></div>
+
+            <div className="relative overflow-hidden w-full aspect-[4/5] border border-white/10 rounded-sm">
+              <img
+                src={herosecond}
+                alt="Narvdeshwar"
+                className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 scale-105 group-hover:scale-100"
+              />
+              <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90"></div>
+            </div>
           </div>
         </div>
 
@@ -49,7 +55,7 @@ function AboutComp() {
           </motion.div>
 
           {/* Stats / Quick Facts */}
-          <div className="grid grid-cols-2 gap-8 mt-8 border-t border-white/10 pt-8">
+          <div className="grid grid-cols-2 gap-8 mt-8  border-white/10 pt-8">
             <div>
               <span className="block text-4xl font-display text-white mb-2">3+</span>
               <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">Years Experience</span>

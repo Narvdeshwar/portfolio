@@ -1,8 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
+import socialUrl from "../../../../constants/socialurls";
 
 function ContactComp() {
     return (
-        <section className="py-32 px-6 border-t border-white/5 relative overflow-hidden">
+        <section className="py-32 px-6  border-white/5 relative overflow-hidden">
             <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
 
                 <span className="text-sm font-mono text-blue-500 uppercase tracking-widest mb-6 animate-pulse">
@@ -26,10 +27,17 @@ function ContactComp() {
                     <ArrowUpRight className="relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </a>
 
-                <div className="flex gap-8 mt-20">
-                    {['LinkedIn', 'GitHub', 'Twitter', 'Instagram'].map((social, idx) => (
-                        <a key={idx} href="#" className="text-sm font-mono text-gray-500 hover:text-white uppercase tracking-widest transition-colors">
-                            {social}
+                <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 mt-24">
+                    {Object.entries(socialUrl).map(([name, url], idx) => (
+                        <a
+                            key={idx}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm font-mono text-gray-500 hover:text-white uppercase tracking-[0.2em] transition-all duration-300 relative group/link"
+                        >
+                            {name}
+                            <span className="absolute -bottom-1 left-0 w-0 h-px bg-blue-500 group-hover/link:w-full transition-all duration-500"></span>
                         </a>
                     ))}
                 </div>
