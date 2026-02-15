@@ -1,100 +1,95 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import navdata from "../../constants/navdata";
+
+import { Resume } from "../../assets";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Detect scroll for sticky effect
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 5) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <motion.header
-      initial={{ marginTop: 10, width: "80%", opacity: 0, y: -50 }}
-      animate={{
-        marginTop: isSticky ? 0 : 10,
-        width: isSticky ? "95%" : "80%",
-        opacity: 1,
-        y: 0,
-      }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
-      className="fixed left-1/2 -translate-x-1/2 z-50 backdrop-blur-xl 
-                 bg-white/10 border border-white/20 shadow-lg 
-                 rounded-full"
-    >
-      <div className="flex justify-between items-center w-full px-6 py-3">
-        {/* Logo */}
-        <div className="flex items-baseline">
-          <p className="text-2xl italic font-semibold border-[#cb42c3] border-b-4 rounded-xl">
-            &nbsp;Narvdeshwar&nbsp;
-          </p>
-        </div>
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+          ? "bg-[#121212]/90 backdrop-blur-lg border-b border-white/10 py-4 shadow-lg"
+          : "bg-transparent py-8"
+          }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
-        {/* Desktop Menu */}
-        <nav className="hidden md:flex gap-6 items-center">
-          {navdata.map((item, index) => (
-            <Link
-              to={item.link}
-              key={index}
-              className="text-white/90 hover:text-[#C778DD] transition-all italic"
+          {/* Logo */}
+          <Link to="/" className="text-white font-display font-bold text-xl tracking-tight z-50">
+            NARVDESHWAR<span className="text-blue-500">.</span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex gap-10 items-center">
+            {navdata.map((item, index) => (
+              <Link
+                to={item.link}
+                key={index}
+                className="text-sm font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-wider"
+              >
+                {item.title}
+              </Link>
+            ))}
+            <a
+              href={Resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2 border border-white/20 rounded-full text-xs font-mono uppercase hover:bg-white hover:text-black transition-all"
             >
-              <span className="text-[#cb42c3] font-bold">#</span>
-              {item.title}
-            </Link>
-          ))}
+              Resume
+            </a>
+          </nav>
 
-        </nav>
-
-        {/* Mobile Hamburger */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? (
-              <X className="text-white" />
-            ) : (
-              <Menu className="text-white" />
-            )}
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-white z-50"
+          >
+            {isOpen ? <X /> : <Menu />}
           </button>
         </div>
-      </div>
+      </motion.header>
 
-      {/* Mobile Dropdown Menu */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-          className="absolute top-[70px] right-0 bg-slate-800/90 backdrop-blur-xl 
-                     border border-white/20 w-[calc(100vw-70px)] h-[calc(100vh-140px)] rounded-lg shadow-lg 
-                     p-3 flex flex-col gap-4 md:hidden"
-        >
-          {navdata.map((item, index) => (
-            <Link
-              to={item.link}
-              key={index}
-              onClick={() => setIsOpen(false)}
-              className="text-white/90 hover:text-[#C778DD] transition-all italic"
-            >
-              <span className="text-[#cb42c3] font-bold">#</span>
-              {item.title}
-            </Link>
-          ))}
-        </motion.div>
-      )}
-    </motion.header>
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-[#121212] z-40 flex flex-col items-center justify-center gap-8"
+          >
+            {navdata.map((item, index) => (
+              <Link
+                to={item.link}
+                key={index}
+                onClick={() => setIsOpen(false)}
+                className="text-3xl font-display font-bold text-white uppercase hover:text-blue-500 transition-colors"
+              >
+                {item.title}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 

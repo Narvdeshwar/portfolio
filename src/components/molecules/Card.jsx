@@ -1,46 +1,61 @@
 import Button from "../atoms/Button";
 import OptimisedImage from "../atoms/OptimisedImage";
-import { GithubIcon } from "lucide-react";
+import { GithubIcon, ExternalLink } from "lucide-react";
 
 function Card({ project }) {
   return (
-    <div className="border border-gray-500 shadow-md rounded-md overflow-hidden glass">
-      <OptimisedImage src={project.image} alt={project.title} className="!rounded-t-md"/>
+    <div className="glass-panel rounded-xl overflow-hidden hover:translate-y-[-5px] transition-transform duration-300 flex flex-col h-full group">
+      <div className="relative overflow-hidden aspect-video">
+        <OptimisedImage
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <Button
+            title="View Project"
+            className="bg-white text-black font-medium border-none hover:bg-white"
+            onClick={() => window.open(project.links.live, "_blank")}
+          />
+        </div>
+      </div>
 
       {/* Technologies */}
-      <div className="grid grid-cols-3 border-b border-gray-500 font-bold px-3 py-1 gap-2">
-        {project.technologies.map((tech, index) => (
-          <p
+      <div className="px-5 pt-4 pb-2 flex flex-wrap gap-2 text-xs">
+        {project.technologies.slice(0, 4).map((tech, index) => (
+          <span
             key={index}
-            className="text-nowrap font-[300] text-[16px] text-gray-500"
+            className="px-2 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded font-mono"
           >
             {tech}
-          </p>
+          </span>
         ))}
+        {project.technologies.length > 4 && (
+          <span className="px-2 py-1 text-gray-500 font-mono">+{project.technologies.length - 4}</span>
+        )}
       </div>
 
       {/* Project details */}
-      <div className="grid grid-rows-2">
-        <div className="px-3 mt-2">
-          <p className="font-semibold">{project.title}</p>
-          <p className="text-sm text-gray-600">{project.description}</p>
+      <div className="px-5 pb-6 flex-1 flex flex-col gap-3">
+        <div>
+          <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+          <p className="text-sm text-gray-400 leading-relaxed line-clamp-3">{project.description}</p>
         </div>
 
-        {/* Buttons */}
-        <div className="grid grid-cols-2 gap-3 px-3 py-2">
-          <Button
-            title="Live"
-            className="flex justify-center items-center gap-2 hover:text-[#cb42c3] hover:border-[#cb42c3]"
+        <div className="mt-auto flex gap-4 pt-2">
+          <button
             onClick={() => window.open(project.links.live, "_blank")}
-          />
+            className="flex items-center gap-2 text-sm text-white hover:text-blue-400 transition-colors"
+          >
+            <ExternalLink size={16} /> Live Demo
+          </button>
           {project.links.github && (
-            <Button
-              title="Git"
-              className="flex justify-center items-center gap-2 hover:text-[#cb42c3] hover:border-[#cb42c3] hover:font-bold"
+            <button
               onClick={() => window.open(project.links.github, "_blank")}
+              className="flex items-center gap-2 text-sm text-white hover:text-blue-400 transition-colors"
             >
-              <GithubIcon className="size-4 hover:text-[#cb42c3]" />
-            </Button>
+              <GithubIcon size={16} /> Source Code
+            </button>
           )}
         </div>
       </div>
