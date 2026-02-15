@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { herosecond } from "../../../assets";
+import { Hero_v2, herosecond } from "../../../assets";
 
 const experiences = [
   {
@@ -36,7 +36,7 @@ const AboutPage = () => {
           <div className="md:col-span-5 flex flex-col gap-10">
             <div className="relative overflow-hidden w-full aspect-[4/5] bg-neutral-900">
               <img
-                src={herosecond}
+                src={Hero_v2}
                 alt="Profile"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
@@ -109,7 +109,7 @@ const AboutPage = () => {
               <h3 className="text-sm font-mono text-blue-500 uppercase tracking-widest mb-8">
                 Experience
               </h3>
-              <div className="flex flex-col border-t border-white/10">
+              <div className="flex flex-col  border-white/10">
                 {experiences.map((exp, index) => (
                   <div key={index} className="py-8 border-b border-white/10 grid grid-cols-1 sm:grid-cols-12 gap-4">
                     <div className="sm:col-span-3 font-mono text-sm text-gray-500 flex flex-col justify-between items-start sm:items-start">
