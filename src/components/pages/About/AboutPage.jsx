@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { herosecond } from "../../../assets";
+import { Hero_v2, herosecond } from "../../../assets";
 
 const experiences = [
   {
@@ -36,7 +36,7 @@ const AboutPage = () => {
           <div className="md:col-span-5 flex flex-col gap-10">
             <div className="relative overflow-hidden w-full aspect-[4/5] bg-neutral-900">
               <img
-                src={herosecond}
+                src={Hero_v2}
                 alt="Profile"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
