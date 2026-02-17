@@ -43,19 +43,24 @@ function Header() {
                 to={item.link}
                 key={index}
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors uppercase tracking-wider relative ${isActive ? "text-white" : "text-gray-400 hover:text-white"
+                  `text-sm font-medium transition-colors uppercase tracking-wider relative px-4 py-2 ${isActive ? "text-white" : "text-gray-400 hover:text-white"
                   }`
                 }
               >
                 {({ isActive }) => (
                   <>
-                    {item.title}
+                    <span className="relative z-10">{item.title}</span>
                     {isActive && (
                       <motion.div
-                        layoutId="nav-dot"
-                        className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-blue-500 rounded-full"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
+                        layoutId="nav-pill"
+                        className="absolute inset-0 bg-white/[0.07] backdrop-blur-sm border border-white/10 rounded-full shadow-inner"
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      >
+                        <motion.div
+                          layoutId="nav-glow"
+                          className="absolute -bottom-px left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.8)]"
+                        />
+                      </motion.div>
                     )}
                   </>
                 )}
