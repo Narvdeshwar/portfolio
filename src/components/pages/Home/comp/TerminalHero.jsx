@@ -1,166 +1,174 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Terminal, Code, Cpu, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Terminal, Code, Cpu, ChevronRight, Hash, Command } from 'lucide-react';
 
 const TerminalHero = () => {
-  const [lines, setLines] = useState([
-    { type: 'comment', content: '// Initializing development environment...' },
-    { type: 'command', content: 'go run main.go' },
-    { type: 'output', content: 'Building scalable architecture...' },
-    { type: 'success', content: '✓ System operational' },
+  const [input, setInput] = useState('');
+  const [history, setHistory] = useState([
+    { type: 'comment', content: '# Senior Engineering Lab v2.0.4' },
+    { type: 'comment', content: '# Type "help" to see available commands' },
+    { type: 'system', content: 'System initialized. All services operational.' },
   ]);
+  const scrollRef = useRef(null);
 
-  const [currentCommand, setCurrentCommand] = useState('');
-
-  // Effect to simulate typing a new command after a delay
   useEffect(() => {
-    const timer = setTimeout(() => {
-      addCommand('whoami');
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, []);
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [history]);
 
-  const addCommand = (cmd) => {
-    let i = 0;
-    const interval = setInterval(() => {
-      setCurrentCommand(cmd.substring(0, i + 1));
-      i++;
-      if (i > cmd.length) {
-        clearInterval(interval);
-        setTimeout(() => {
-          setLines(prev => [...prev, { type: 'command', content: cmd }]);
-          setCurrentCommand('');
-          handleCommandOutput(cmd);
-        }, 400);
-      }
-    }, 80);
+  const commands = {
+    help: () => [
+      { type: 'info', content: 'Available commands:' },
+      { type: 'info', content: '  whoami    - Display developer profile' },
+      { type: 'info', content: '  stats     - System & Project metrics' },
+      { type: 'info', content: '  ls        - List engineering projects' },
+      { type: 'info', content: '  git log   - Recent repository activity' },
+      { type: 'info', content: '  clear     - Clear the terminal screen' },
+      { type: 'info', content: '  exit      - Close simulation' },
+    ],
+    whoami: () => [
+      { type: 'output', content: '{' },
+      { type: 'output', content: '  "name": "Narvdeshwar",' },
+      { type: 'output', content: '  "role": "Senior Backend Engineer",' },
+      { type: 'output', content: '  "specialization": ["Distributed Systems", "Cloud Arch"],' },
+      { type: 'output', content: '  "motto": "Build systems that scale beyond the hype."' },
+      { type: 'output', content: '}' },
+    ],
+    stats: () => [
+      { type: 'output', content: 'TRAFFIC_HUB: 12k/mo requests | UP_TIME: 99.98%' },
+      { type: 'output', content: 'ACTIVE_WORKERS: 4 | REDIS_CACHE: Hits: 84% Misses: 16%' },
+      { type: 'success', content: 'System Status: OPTIMAL' },
+    ],
+    ls: () => [
+      { type: 'info', content: 'DRW-R--R--  JSPARK AI' },
+      { type: 'info', content: 'DRW-R--R--  SaaS IoT Platform' },
+      { type: 'info', content: 'DRW-R--R--  Distributed Task Queue' },
+      { type: 'info', content: 'DRW-R--R--  Legal Check Calc' },
+    ],
+    'git log': () => [
+      { type: 'comment', content: 'commit ac7f82b (HEAD -> master)' },
+      { type: 'output', content: 'Author: Narvdeshwar <dev@main>' },
+      { type: 'output', content: 'Date:   Tue Feb 17 23:58:00 2026' },
+      { type: 'output', content: '    feat: optimize distributed queue polling mechanism' },
+    ],
+    clear: () => {
+      setHistory([]);
+      return [];
+    },
+    exit: () => [
+      { type: 'error', content: 'Simulation cannot be exited. You are the system.' }
+    ]
   };
 
-  const handleCommandOutput = (cmd) => {
-    if (cmd === 'whoami') {
-      const output = [
-        { type: 'object-key', content: 'Name:', value: ' "Narvdeshwar"' },
-        { type: 'object-key', content: 'Role:', value: ' "Senior Backend Engineer"' },
-        { type: 'object-key', content: 'Exp:', value: ' ">3 Years"' },
-        { type: 'object-key', content: 'Stack:', value: ' ["Go", "Docker", "K8s"]' }
-      ];
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const cmd = input.trim().toLowerCase();
 
-      output.forEach((line, index) => {
-        setTimeout(() => {
-          setLines(prev => [...prev, line]);
-        }, (index + 1) * 200);
-      });
+    setHistory(prev => [...prev, { type: 'command', content: cmd }]);
+
+    if (commands[cmd]) {
+      const result = commands[cmd]();
+      setHistory(prev => [...prev, ...result]);
+    } else if (cmd !== '') {
+      setHistory(prev => [...prev, { type: 'error', content: `sh: command not found: ${cmd}` }]);
     }
+
+    setInput('');
   };
 
   return (
-    <section className="min-h-screen pt-32 pb-20 flex flex-col items-center justify-center relative overflow-hidden">
+    <section className="py-24 px-6 relative overflow-hidden bg-[#050505] border-y border-white/5">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
-      {/* Background Ambience */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 blob-blue opacity-40"></div>
-      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 blob-purple opacity-40"></div>
-      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
+        {/* Left Side: Technical Context */}
+        <div>
+          <h2 className="text-sm font-mono text-blue-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+            <Hash size={14} /> The Lab / Sandbox
+          </h2>
+          <h3 className="text-4xl md:text-6xl font-display font-medium text-white mb-8 leading-[1.1]">
+            INTERACT WITH MY <br />
+            <span className="text-gray-500 italic">SYSTEM ARCHITECTURE.</span>
+          </h3>
+          <p className="text-gray-400 text-lg leading-relaxed max-w-lg mb-10">
+            A Senior Engineer doesn't just write code; they manage environments.
+            Use the terminal to explore the technical depth behind these projects.
+          </p>
 
-      <div className="z-10 w-full max-w-7xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-        {/* Text Content */}
-        <div className="space-y-8 order-2 lg:order-1 text-center lg:text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-blue-400 text-xs font-mono mb-6 border-blue-500/20">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-              </span>
-              Available for hire
-            </div>
-
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight mb-6">
-              Engineering <br />
-              <span className="gradient-title">Pixel-Perfect</span> <br />
-              Systems.
-            </h1>
-
-            <p className="text-gray-400 text-lg sm:text-xl max-w-lg mx-auto lg:mx-0 leading-relaxed font-light">
-              Bridging the gap between complex <span className="text-white font-medium">Backend Architectures</span> and intuitive <span className="text-white font-medium">User Interfaces</span>.
-            </p>
-
-            <div className="flex flex-wrap gap-4 mt-10 justify-center lg:justify-start">
-              <button className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2">
-                View Projects <ChevronRight size={18} />
-              </button>
-              <button className="px-8 py-4 glass-panel text-white font-semibold rounded-full hover:bg-white/5 transition-all flex items-center gap-2">
-                <Code size={18} /> Contact Me
-              </button>
-            </div>
-          </motion.div>
+          <div className="flex items-center gap-4 text-xs font-mono text-gray-600">
+            <span className="flex items-center gap-1"><Command size={12} /> SHIFT + ENTER to execute</span>
+            <span className="w-1 h-1 bg-gray-800 rounded-full" />
+            <span>ROOT ACCESS GRANTED</span>
+          </div>
         </div>
 
-        {/* Improved Modern Terminal */}
+        {/* Right Side: Re-engineered Terminal */}
         <motion.div
-          className="order-1 lg:order-2 w-full animate-float"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="relative"
         >
-          <div className="glass-panel rounded-xl overflow-hidden shadow-2xl font-mono text-sm sm:text-base border border-white/10 relative">
-
-            {/* Window Controls */}
-            <div className="bg-white/5 px-4 py-3 flex items-center gap-4 border-b border-white/5">
+          {/* Terminal Box */}
+          <div className="bg-[#0D0D0D] rounded-lg overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+            {/* Header */}
+            <div className="bg-[#1A1A1A] px-4 py-3 flex justify-between items-center border-b border-white/5">
               <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-                <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#ff5f56]/20 border border-[#ff5f56]/30" />
+                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]/20 border border-[#ffbd2e]/30" />
+                <div className="w-3 h-3 rounded-full bg-[#27c93f]/20 border border-[#27c93f]/30" />
               </div>
-              <div className="flex-1 text-center text-xs text-gray-500 font-sans">
-                narv @ main — -zsh
-              </div>
-              <div className="w-10"></div> {/* Spacer for centering */}
+              <div className="text-[10px] uppercase tracking-widest text-gray-500 font-mono">zsh — session_082</div>
             </div>
 
-            {/* Terminal Content */}
-            <div className="p-6 md:p-8 min-h-[340px] text-gray-300 space-y-3 bg-black/20">
-              {lines.map((line, idx) => (
-                <div key={idx} className="break-words">
-                  {line.type === 'comment' && <span className="text-gray-500 italic">{line.content}</span>}
+            {/* Scrollable Area */}
+            <div
+              ref={scrollRef}
+              className="p-6 h-[400px] overflow-y-auto font-mono text-sm space-y-2 custom-scrollbar"
+            >
+              <AnimatePresence>
+                {history.map((line, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -5 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="flex gap-3"
+                  >
+                    {line.type === 'command' && <span className="text-blue-500">➜</span>}
+                    <span className={`
+                      ${line.type === 'comment' ? 'text-gray-600 italic' : ''}
+                      ${line.type === 'command' ? 'text-white font-bold' : ''}
+                      ${line.type === 'success' ? 'text-emerald-500' : ''}
+                      ${line.type === 'error' ? 'text-rose-500' : ''}
+                      ${line.type === 'info' ? 'text-blue-400' : ''}
+                      ${line.type === 'output' ? 'text-gray-400' : ''}
+                      ${line.type === 'system' ? 'text-amber-500/80 bg-amber-500/5 px-2 rounded-sm' : ''}
+                    `}>
+                      {line.content}
+                    </span>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
 
-                  {line.type === 'command' && (
-                    <div className="flex gap-2 text-white">
-                      <span className="text-blue-400">➜</span>
-                      <span className="text-pink-400">~</span>
-                      <span>{line.content}</span>
-                    </div>
-                  )}
-
-                  {line.type === 'success' && <span className="text-emerald-400">{line.content}</span>}
-
-                  {line.type === 'object-key' && (
-                    <div className="pl-4">
-                      <span className="text-purple-400">{line.content}</span>
-                      <span className="text-yellow-100">{line.value}</span>
-                    </div>
-                  )}
-
-                  {line.type === 'output' && <span className="text-gray-400">{line.content}</span>}
-                </div>
-              ))}
-
-              <div className="flex gap-2 items-center text-white">
-                <span className="text-blue-400">➜</span>
-                <span className="text-pink-400">~</span>
-                <span>{currentCommand}</span>
-                <span className="w-2 h-5 bg-gray-500 animate-pulse"></span>
-              </div>
+              {/* Input Area */}
+              <form onSubmit={handleSubmit} className="flex gap-3">
+                <span className="text-blue-500">➜</span>
+                <input
+                  autoFocus
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  className="bg-transparent border-none outline-none text-white w-full caret-blue-500"
+                  spellCheck="false"
+                  autoComplete="off"
+                />
+              </form>
             </div>
           </div>
 
-          {/* Floating Element behind/near terminal */}
-          <div className="absolute -z-10 -bottom-10 -right-10 w-32 h-32 bg-blue-500/20 blur-3xl rounded-full"></div>
+          {/* Background Glow */}
+          <div className="absolute -inset-4 bg-blue-500/5 blur-3xl -z-10 rounded-full" />
         </motion.div>
-
       </div>
     </section>
   );

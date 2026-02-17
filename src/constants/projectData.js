@@ -48,6 +48,14 @@ export const projectsData = [
     technologies: ["Golang", "RabbitMQ", "Redis", "Docker", "MongoDB"],
     links: { live: "#", github: "https://github.com/Narvdeshwar/distributed-task-queue" },
     stats: { stars: "45", status: "Active" },
+    challenges: "Handling spike-heavy traffic without overloading the MongoDB instance was the biggest challenge. Implementing a back-pressure mechanism with RabbitMQ helped stabilize the flow.",
+    decisions: "Chose RabbitMQ over Kafka due to the need for granular message-level acknowledgments and complex routing requirements typical of our task types.",
+    codeSnippet: `// Custom retry logic with exponential backoff
+func (w *Worker) retry(task *Task) {
+    backoff := time.Duration(1 << task.RetryCount) * time.Second
+    time.Sleep(backoff)
+    w.queue.Publish(task)
+}`,
     architecture: {
       nodes: [
         { id: 'client', label: 'HTTP Clients', x: 5, y: 50, type: 'external' },
@@ -76,6 +84,15 @@ export const projectsData = [
     technologies: ["Golang", "TimescaleDB", "gRPC", "Kafka"],
     links: { live: "#", github: "https://github.com/Narvdeshwar/iot-platform-core" },
     stats: { stars: "32", status: "Building" },
+    challenges: "Ingesting 10k+ events/sec required a non-blocking gRPC server architecture. We optimized Protobuf serialization to reduce payload overhead by 40%.",
+    decisions: "Used TimescaleDB because it's built on PostgreSQL but optimized for time-series data, allowing us to keep SQL familiarity while gaining massive performance in time-based queries.",
+    codeSnippet: `// High-frequency sensor data ingestion
+func (s *Server) Ingest(stream pb.IoT_IngestServer) error {
+    for {
+        event, err := stream.Recv()
+        go s.process(event) // Non-blocking
+    }
+}`,
     architecture: {
       nodes: [
         { id: 'sensors', label: 'IoT Devices', x: 5, y: 50, type: 'external' },
@@ -102,6 +119,12 @@ export const projectsData = [
     technologies: ["React", "D3.js", "Redux", "PostGIS"],
     links: { live: "#", github: "https://github.com/Narvdeshwar/ncrb-analytics" },
     stats: { stars: "28", status: "Stable" },
+    challenges: "Visualizing million+ data points on a browser heatmap without lagging. Implemented a canvas-based rendering engine for D3 instead of SVG.",
+    decisions: "PostGIS was essential for spatial queries, allowing us to find crime clusters within specific radius and administrative boundaries efficiently.",
+    codeSnippet: `// Spatial query for crime clustering
+SELECT ST_ClusterKMeans(geom, 5) OVER() 
+FROM crime_reports 
+WHERE city = 'Delhi';`,
     architecture: {
       nodes: [
         { id: 'gov', label: 'Govt. API', x: 5, y: 50, type: 'external' },
