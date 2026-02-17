@@ -1,15 +1,32 @@
+import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
-import Homepage from "./components/pages/Home/Homepage";
-import WorkPage from "./components/pages/Work/WorkPage";
-import AboutPage from "./components/pages/About/AboutPage";
-import ContactPage from "./components/pages/Contact/ContactPage";
-import ProjectDetailsPage from "./components/pages/ProjectDetails/ProjectDetailsPage";
 import SplashCursor from "./components/molecules/SplashCursor";
-import { useEffect } from "react";
 import Lenis from "lenis";
+
+// Lazy Loaded Pages
+const Homepage = lazy(() => import("./components/pages/Home/Homepage"));
+const WorkPage = lazy(() => import("./components/pages/Work/WorkPage"));
+const AboutPage = lazy(() => import("./components/pages/About/AboutPage"));
+const ContactPage = lazy(() => import("./components/pages/Contact/ContactPage"));
+const ProjectDetailsPage = lazy(() => import("./components/pages/ProjectDetails/ProjectDetailsPage"));
+
+// Loading Component
+const PageLoading = () => (
+  <div className="fixed inset-0 bg-[#050505] flex items-center justify-center z-[100]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="flex flex-col items-center gap-4"
+    >
+      <div className="w-12 h-12 border-2 border-blue-500/20 border-t-blue-500 rounded-full animate-spin" />
+      <span className="text-[10px] font-mono uppercase tracking-[.3em] text-gray-500 italic">Initializing Systems</span>
+    </motion.div>
+  </div>
+);
 
 const SmoothScroll = ({ children }) => {
   useEffect(() => {
@@ -96,13 +113,15 @@ function App() {
 
         <main className="flex-grow">
           <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/work" element={<WorkPage />} />
-              <Route path="/work/:slug" element={<ProjectDetailsPage />} />
-              <Route path="/aboutme" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-            </Routes>
+            <Suspense fallback={<PageLoading />}>
+              <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/work" element={<WorkPage />} />
+                <Route path="/work/:slug" element={<ProjectDetailsPage />} />
+                <Route path="/aboutme" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+              </Routes>
+            </Suspense>
           </AnimatePresence>
         </main>
 
