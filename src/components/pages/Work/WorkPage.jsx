@@ -34,46 +34,50 @@ const WorkPage = () => {
           </div>
 
           {projectsData.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="group border-b border-white/5 py-8 md:py-12 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-white/[0.02] transition-colors"
-            >
-              {/* Number */}
-              <div className="hidden md:block col-span-1 font-mono text-sm text-gray-600 group-hover:text-blue-500 transition-colors">
-                {String(index + 1).padStart(2, '0')}
-              </div>
+            <Link key={index} to={`/work/${project.slug}`} className="block">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group border-b border-white/5 py-8 md:py-12 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-white/[0.02] transition-colors cursor-pointer"
+              >
+                {/* Number */}
+                <div className="hidden md:block col-span-1 font-mono text-sm text-gray-600 group-hover:text-blue-500 transition-colors">
+                  {String(index + 1).padStart(2, '0')}
+                </div>
 
-              {/* Title */}
-              <div className="col-span-12 md:col-span-5">
-                <h3 className="text-3xl md:text-5xl font-display font-medium text-gray-300 group-hover:text-white transition-colors">
-                  {project.title}
-                </h3>
-                {/* Mobile Stack */}
-                <div className="md:hidden mt-2 text-sm text-gray-500 font-mono">
+                {/* Title */}
+                <div className="col-span-12 md:col-span-5">
+                  <h3 className="text-3xl md:text-5xl font-display font-medium text-gray-300 group-hover:text-white transition-colors">
+                    {project.title}
+                  </h3>
+                  {/* Mobile Stack */}
+                  <div className="md:hidden mt-2 text-sm text-gray-500 font-mono">
+                    {project.technologies.slice(0, 3).join(", ")}
+                  </div>
+                </div>
+
+                {/* Desktop Stack */}
+                <div className="hidden md:block col-span-4 text-sm font-mono text-gray-500">
                   {project.technologies.slice(0, 3).join(", ")}
                 </div>
-              </div>
 
-              {/* Desktop Stack */}
-              <div className="hidden md:block col-span-4 text-sm font-mono text-gray-500">
-                {project.technologies.slice(0, 3).join(", ")}
-              </div>
-
-              {/* Link */}
-              <div className="col-span-12 md:col-span-2 flex justify-end">
-                <a
-                  href={project.links.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300"
-                >
-                  <ArrowUpRight size={20} />
-                </a>
-              </div>
-            </motion.div>
+                {/* Link */}
+                <div className="col-span-12 md:col-span-2 flex justify-end">
+                  {project.links.live && project.links.live !== "#" && (
+                    <a
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300"
+                    >
+                      <ArrowUpRight size={20} />
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
 

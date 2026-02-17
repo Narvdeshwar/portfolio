@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Github, Monitor, Activity, Code2, Server } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Monitor, Activity, Code2, Server, Box } from "lucide-react";
 import projectsData from "../../../constants/projectData";
 import { jspark } from "../../../assets"; // Fallback image
+import ArchitectureDiagram from "../../molecules/ArchitectureDiagram";
 
 const ProjectDetailsPage = () => {
   const { slug } = useParams();
@@ -146,6 +147,33 @@ const ProjectDetailsPage = () => {
 
           </div>
         </div>
+
+        {/* System Architecture Section */}
+        {project.architecture && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-32"
+          >
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+              <div className="max-w-xl">
+                <h3 className="text-sm font-mono text-blue-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <Box size={14} />
+                  01. / System Architecture
+                </h3>
+                <h2 className="text-3xl md:text-5xl font-display font-medium text-white">
+                  Engineering Blueprint.
+                </h2>
+              </div>
+              <p className="text-gray-500 text-sm font-mono max-w-xs md:text-right">
+                Visualizing the distributed flow and service orchestration.
+              </p>
+            </div>
+
+            <ArchitectureDiagram architecture={project.architecture} />
+          </motion.div>
+        )}
 
       </div>
     </section>

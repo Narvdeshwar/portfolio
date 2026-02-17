@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import navdata from "../../constants/navdata";
@@ -39,13 +39,27 @@ function Header() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex gap-10 items-center">
             {navdata.map((item, index) => (
-              <Link
+              <NavLink
                 to={item.link}
                 key={index}
-                className="text-sm font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-wider"
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors uppercase tracking-wider relative ${isActive ? "text-white" : "text-gray-400 hover:text-white"
+                  }`
+                }
               >
-                {item.title}
-              </Link>
+                {({ isActive }) => (
+                  <>
+                    {item.title}
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-dot"
+                        className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-blue-500 rounded-full"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </>
+                )}
+              </NavLink>
             ))}
             <a
               href={Resume}
@@ -77,14 +91,17 @@ function Header() {
             className="fixed inset-0 bg-[#121212] z-40 flex flex-col items-center justify-center gap-8"
           >
             {navdata.map((item, index) => (
-              <Link
+              <NavLink
                 to={item.link}
                 key={index}
                 onClick={() => setIsOpen(false)}
-                className="text-3xl font-display font-bold text-white uppercase hover:text-blue-500 transition-colors"
+                className={({ isActive }) =>
+                  `text-3xl font-display font-bold uppercase transition-colors ${isActive ? "text-blue-500" : "text-white hover:text-blue-500"
+                  }`
+                }
               >
                 {item.title}
-              </Link>
+              </NavLink>
             ))}
           </motion.div>
         )}

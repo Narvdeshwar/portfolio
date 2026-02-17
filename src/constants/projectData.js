@@ -47,7 +47,24 @@ export const projectsData = [
     image: jspark, // Placeholder
     technologies: ["Golang", "RabbitMQ", "Redis", "Docker", "MongoDB"],
     links: { live: "#", github: "https://github.com/Narvdeshwar/distributed-task-queue" },
-    stats: { stars: "45", status: "Active" }
+    stats: { stars: "45", status: "Active" },
+    architecture: {
+      nodes: [
+        { id: 'client', label: 'HTTP Clients', x: 5, y: 50, type: 'external' },
+        { id: 'api', label: 'Go API Gateway', x: 30, y: 50, type: 'service' },
+        { id: 'rmq', label: 'RabbitMQ Broker', x: 55, y: 20, type: 'queue' },
+        { id: 'redis', label: 'Redis Cache', x: 55, y: 80, type: 'db' },
+        { id: 'worker', label: 'Go Background Workers', x: 80, y: 50, type: 'service' },
+        { id: 'db', label: 'Primary DB', x: 95, y: 50, type: 'db' }
+      ],
+      connections: [
+        { from: 'client', to: 'api', label: 'Request' },
+        { from: 'api', to: 'rmq', label: 'Enqueue' },
+        { from: 'api', to: 'redis', label: 'Check' },
+        { from: 'rmq', to: 'worker', label: 'Process' },
+        { from: 'worker', to: 'db', label: 'Persist' }
+      ]
+    }
   },
   {
     slug: "saas-iot-platform",
@@ -58,7 +75,22 @@ export const projectsData = [
     image: jsparkprime, // Placeholder
     technologies: ["Golang", "TimescaleDB", "gRPC", "Kafka"],
     links: { live: "#", github: "https://github.com/Narvdeshwar/iot-platform-core" },
-    stats: { stars: "32", status: "Building" }
+    stats: { stars: "32", status: "Building" },
+    architecture: {
+      nodes: [
+        { id: 'sensors', label: 'IoT Devices', x: 5, y: 50, type: 'external' },
+        { id: 'kafka', label: 'Kafka Ingestion', x: 30, y: 50, type: 'queue' },
+        { id: 'grpc', label: 'gRPC Processors', x: 55, y: 50, type: 'service' },
+        { id: 'timescale', label: 'TimescaleDB', x: 85, y: 30, type: 'db' },
+        { id: 'redis', label: 'Real-time Cache', x: 85, y: 70, type: 'db' }
+      ],
+      connections: [
+        { from: 'sensors', to: 'kafka', label: 'Protobuf' },
+        { from: 'kafka', to: 'grpc', label: 'Stream' },
+        { from: 'grpc', to: 'timescale', label: 'Store' },
+        { from: 'grpc', to: 'redis', label: 'Cache' }
+      ]
+    }
   },
   {
     slug: "ncrb-bi-dashboard",
@@ -69,7 +101,20 @@ export const projectsData = [
     image: jsparkprime, // Placeholder
     technologies: ["React", "D3.js", "Redux", "PostGIS"],
     links: { live: "#", github: "https://github.com/Narvdeshwar/ncrb-analytics" },
-    stats: { stars: "28", status: "Stable" }
+    stats: { stars: "28", status: "Stable" },
+    architecture: {
+      nodes: [
+        { id: 'gov', label: 'Govt. API', x: 5, y: 50, type: 'external' },
+        { id: 'etl', label: 'ETL Pipeline', x: 30, y: 50, type: 'service' },
+        { id: 'postgis', label: 'PostGIS (Spatial)', x: 60, y: 50, type: 'db' },
+        { id: 'dashboard', label: 'React / D3 Engine', x: 90, y: 50, type: 'service' }
+      ],
+      connections: [
+        { from: 'gov', to: 'etl', label: 'Ingest' },
+        { from: 'etl', to: 'postgis', label: 'Query' },
+        { from: 'postgis', to: 'dashboard', label: 'Visualize' }
+      ]
+    }
   }
 ];
 
