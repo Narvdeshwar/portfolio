@@ -49,10 +49,10 @@ const SkillsMatrix = () => {
   const [activeTab, setActiveTab] = useState(skillMatrix[0].id);
 
   return (
-    <section className="py-32 px-6 bg-[#050505]">
+    <section className="py-20 md:py-32 px-6 bg-[#050505]">
       <div className="max-w-7xl mx-auto">
 
-        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 mb-16 md:mb-20">
           <div>
             <h2 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-4">03. / Engineering Stack</h2>
             <h3 className="text-4xl md:text-6xl font-display font-medium text-white max-w-2xl leading-[1.1]">
@@ -60,24 +60,26 @@ const SkillsMatrix = () => {
             </h3>
           </div>
 
-          <div className="flex bg-white/5 p-1 rounded-full border border-white/10 overflow-hidden">
-            {skillMatrix.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-2 rounded-full text-xs font-mono uppercase tracking-widest transition-all duration-300 relative ${activeTab === tab.id ? "text-black" : "text-gray-500 hover:text-white"
-                  }`}
-              >
-                {activeTab === tab.id && (
-                  <motion.div
-                    layoutId="activeTabPill"
-                    className="absolute inset-0 bg-white"
-                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{tab.label}</span>
-              </button>
-            ))}
+          <div className="w-full md:w-auto overflow-x-auto no-scrollbar pb-2 md:pb-0">
+            <div className="flex bg-white/5 p-1 rounded-full border border-white/10 min-w-max">
+              {skillMatrix.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-5 md:px-6 py-2 rounded-full text-[10px] md:text-xs font-mono uppercase tracking-widest transition-all duration-300 relative ${activeTab === tab.id ? "text-black" : "text-gray-500 hover:text-white"
+                    }`}
+                >
+                  {activeTab === tab.id && (
+                    <motion.div
+                      layoutId="activeTabPill"
+                      className="absolute inset-0 bg-white"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{tab.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
-import SplashCursor from "./components/molecules/SplashCursor";
+import CustomCursor from "./components/atoms/CustomCursor";
 import Lenis from "lenis";
 
 // Lazy Loaded Pages
@@ -106,7 +106,7 @@ function App() {
       <div className="main mx-auto relative text-gray-200 min-h-screen flex flex-col">
         <div className="bg-grid-pattern" />
         <LiquidBackground />
-        {/* <SplashCursor /> */}
+        <CustomCursor />
         <ScrollToTop />
 
         <Header />

@@ -180,26 +180,26 @@ const ProjectDetailsPage = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-32 pt-24 border-t border-white/5"
+          className="mt-20 md:mt-32 pt-16 md:pt-24 border-t border-white/5"
         >
-          <div className="space-y-20">
+          <div className="space-y-16 md:space-y-20">
             {/* Decisions & Challenges */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+              <div className="space-y-4 md:space-y-6">
                 <h3 className="text-xs font-mono text-blue-500 uppercase tracking-widest flex items-center gap-2">
                   <div className="w-1 h-1 bg-blue-500 rounded-full" />
                   Architecture Decisions
                 </h3>
-                <p className="text-gray-300 leading-relaxed font-light text-lg italic">
+                <p className="text-gray-300 leading-relaxed font-light text-base md:text-lg italic">
                   "{project.decisions}"
                 </p>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 <h3 className="text-xs font-mono text-rose-500 uppercase tracking-widest flex items-center gap-2">
                   <div className="w-1 h-1 bg-rose-500 rounded-full" />
                   Engineering Challenges
                 </h3>
-                <p className="text-gray-300 leading-relaxed font-light text-lg italic">
+                <p className="text-gray-300 leading-relaxed font-light text-base md:text-lg italic">
                   "{project.challenges}"
                 </p>
               </div>
@@ -207,7 +207,7 @@ const ProjectDetailsPage = () => {
 
             {/* Code Proof (Optional) */}
             {project.codeSnippet && (
-              <div className="space-y-8">
+              <div className="space-y-6 md:space-y-8">
                 <div className="flex items-center justify-between">
                   <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest flex items-center gap-2">
                     <div className="w-1 h-1 bg-gray-500 rounded-full" />
@@ -219,8 +219,8 @@ const ProjectDetailsPage = () => {
                     <div className="w-1.5 h-1.5 rounded-full bg-white/5" />
                   </div>
                 </div>
-                <div className="bg-[#090909] rounded-2xl p-10 border border-white/5 font-mono text-sm overflow-x-auto relative group shadow-2xl">
-                  <div className="absolute top-6 right-8 text-[10px] text-gray-700 uppercase tracking-[0.2em] font-bold opacity-40 group-hover:opacity-100 transition-opacity">READ_ONLY_BLOCK</div>
+                <div className="bg-[#090909] rounded-2xl p-6 md:p-10 border border-white/5 font-mono text-[11px] md:text-sm overflow-x-auto relative group shadow-2xl">
+                  <div className="absolute top-4 md:top-6 right-6 md:right-8 text-[9px] md:text-[10px] text-gray-700 uppercase tracking-[0.2em] font-bold opacity-40 group-hover:opacity-100 transition-opacity">READ_ONLY_BLOCK</div>
                   <pre className="text-blue-400 leading-relaxed">
                     <code>{project.codeSnippet}</code>
                   </pre>
@@ -229,6 +229,25 @@ const ProjectDetailsPage = () => {
             )}
           </div>
         </motion.section>
+
+        {/* Next Project Navigation */}
+        <section className="mt-32 pt-24 border-t border-white/5 pb-20">
+          <div className="flex flex-col items-center text-center">
+            <span className="text-[10px] font-mono text-gray-600 uppercase tracking-[0.3em] mb-8 text-center w-full">Up Next</span>
+            <Link
+              to={`/work/${projectsData[(projectsData.findIndex(p => p.slug === slug) + 1) % projectsData.length].slug}`}
+              className="group inline-block"
+            >
+              <h4 className="text-4xl md:text-8xl font-display font-medium text-white group-hover:text-blue-500 transition-colors duration-500 leading-none mb-8">
+                {projectsData[(projectsData.findIndex(p => p.slug === slug) + 1) % projectsData.length].title}
+              </h4>
+              <div className="flex items-center justify-center gap-4 text-xs font-mono text-gray-500 uppercase tracking-widest group-hover:text-white transition-colors">
+                <span>View Project Case Study</span>
+                <div className="w-12 h-px bg-white/10 group-hover:bg-blue-500 group-hover:w-20 transition-all duration-500" />
+              </div>
+            </Link>
+          </div>
+        </section>
 
       </div>
     </section>

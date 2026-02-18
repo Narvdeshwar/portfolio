@@ -78,26 +78,26 @@ const TerminalHero = () => {
   };
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden bg-[#050505] border-y border-white/5">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+    <section className="py-16 md:py-24 px-6 relative overflow-hidden bg-[#050505] border-y border-white/5">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         {/* Left Side: Technical Context */}
         <div>
           <h2 className="text-sm font-mono text-blue-500 uppercase tracking-widest mb-4 flex items-center gap-2">
             <Hash size={14} /> The Lab / Sandbox
           </h2>
-          <h3 className="text-4xl md:text-6xl font-display font-medium text-white mb-8 leading-[1.1]">
+          <h3 className="text-4xl md:text-6xl font-display font-medium text-white mb-6 md:mb-8 leading-[1.1]">
             INTERACT WITH MY <br />
             <span className="text-gray-500 italic">SYSTEM ARCHITECTURE.</span>
           </h3>
-          <p className="text-gray-400 text-lg leading-relaxed max-w-lg mb-10">
+          <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-lg mb-8 md:mb-10">
             A Senior Engineer doesn't just write code; they manage environments.
             Use the terminal to explore the technical depth behind these projects.
           </p>
 
-          <div className="flex items-center gap-4 text-xs font-mono text-gray-600">
+          <div className="flex flex-wrap items-center gap-4 text-[10px] md:text-xs font-mono text-gray-600">
             <span className="flex items-center gap-1"><Command size={12} /> SHIFT + ENTER to execute</span>
-            <span className="w-1 h-1 bg-gray-800 rounded-full" />
+            <span className="hidden md:block w-1 h-1 bg-gray-800 rounded-full" />
             <span>ROOT ACCESS GRANTED</span>
           </div>
         </div>
