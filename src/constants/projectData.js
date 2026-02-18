@@ -138,6 +138,105 @@ WHERE city = 'Delhi';`,
         { from: 'postgis', to: 'dashboard', label: 'Visualize' }
       ]
     }
+  },
+  {
+    slug: "go-logstreamer",
+    category: "engineering",
+    title: "Go LogStreamer",
+    description: "High-performance, concurrent log processing pipeline built in Go.",
+    longDescription: "A specialized tool designed for low-latency log ingestion and processing. Built with a worker-pool architecture and zero-allocation logging principles to handle extreme throughput.",
+    image: jspark, // Placeholder
+    technologies: ["Golang", "Concurrency", "Channels", "Worker Pools"],
+    links: { live: "#", github: "https://github.com/Narvdeshwar/go-logstreamer" },
+    stats: { throughput: "~1M lines/sec", status: "Production Ready" },
+    challenges: "Achieving million-line-per-second throughput required optimizing the scanner buffer and minimizing garbage collection pressure. Zero-allocation parsing was key.",
+    decisions: "Chose a semaphore-based worker pool to strictly control resource consumption while maintaining maximum possible throughput across CPU cores.",
+    codeSnippet: `// Worker pool dispatcher
+func (p *Pipeline) Run(ctx context.Context) {
+    for i := 0; i < p.workerCount; i++ {
+        go p.worker(ctx)
+    }
+    p.dispatch(ctx)
+}`,
+    architecture: {
+      nodes: [
+        { id: 'source', label: 'Log Files / Streams', x: 5, y: 50, type: 'external' },
+        { id: 'scanner', label: 'Fast Scanner', x: 30, y: 50, type: 'service' },
+        { id: 'pool', label: 'Worker Pool (Semaphores)', x: 60, y: 50, type: 'queue' },
+        { id: 'sink', label: 'Structured Sink (JSON/DB)', x: 90, y: 50, type: 'service' }
+      ],
+      connections: [
+        { from: 'source', to: 'scanner', label: 'IO Stream' },
+        { from: 'scanner', to: 'pool', label: 'Raw Lines' },
+        { from: 'pool', to: 'sink', label: 'Processed JSON' }
+      ]
+    }
+  },
+  {
+    slug: "event-notification-service",
+    category: "engineering",
+    title: "Event Notification Hub",
+    description: "Scalable microservice for real-time notification dispatching.",
+    longDescription: "An event-driven service that orchestrates multi-channel notifications (Push, Email, SMS) with guaranteed delivery and intelligent retry mechanisms.",
+    image: jsparkprime, // Placeholder
+    technologies: ["Golang", "RabbitMQ", "Redis", "Microservices"],
+    links: { live: "#", github: "https://github.com/Narvdeshwar/Event-Notification-Service" },
+    stats: { latency: "<50ms", status: "Active" },
+    challenges: "Ensuring idempotency across multiple notification providers to prevent duplicate alerts during network flakiness was the primary hurdle.",
+    decisions: "Implemented a Redis-backed locking mechanism to track event IDs and ensure 'at-least-once' delivery without 'more-than-once' annoyance.",
+    codeSnippet: `// Event dispatcher with locking
+func (d *Dispatcher) Dispatch(event *Event) error {
+    if exists := d.cache.Check(event.ID); exists {
+        return nil // Already processed
+    }
+    return d.provider.Send(event)
+}`,
+    architecture: {
+      nodes: [
+        { id: 'producers', label: 'Upstream Services', x: 5, y: 50, type: 'external' },
+        { id: 'mq', label: 'Message Queue', x: 30, y: 50, type: 'queue' },
+        { id: 'hub', label: 'Notification Hub', x: 60, y: 50, type: 'service' },
+        { id: 'redis', label: 'Idempotency Store', x: 60, y: 80, type: 'db' },
+        { id: 'providers', label: 'External Gateways', x: 90, y: 50, type: 'external' }
+      ],
+      connections: [
+        { from: 'producers', to: 'mq', label: 'Trigger' },
+        { from: 'mq', to: 'hub', label: 'Consume' },
+        { from: 'hub', to: 'redis', label: 'Lock/Sync' },
+        { from: 'hub', to: 'providers', label: 'Dispatch' }
+      ]
+    }
+  },
+  {
+    slug: "restaurant-backend",
+    category: "engineering",
+    title: "Restaurant OS (API)",
+    description: "Comprehensive backend architecture for modern restaurant management.",
+    longDescription: "A production-grade REST API featuring complex resource management, role-based access control (RBAC), and automated inventory tracking.",
+    image: jspark, // Placeholder
+    technologies: ["Node.js", "Express", "MongoDB", "JWT", "TypeScript"],
+    links: { live: "#", github: "https://github.com/Narvdeshwar/Restaurant-Backend" },
+    stats: { endpoints: "45+", status: "Stable" },
+    challenges: "Designing a flexible menu aggregation system that could handle thousands of modifiers and dynamic pricing variations with ease.",
+    decisions: "Adopted a strict MVC architecture with a dependency injection layer to ensure the core business logic remains unit-testable and decoupled from the database.",
+    codeSnippet: `// Decoupled Controller Logic
+export const createOrder = async (req: Request, res: Response) => {
+    const order = await OrderService.process(req.body);
+    return res.status(201).json(order);
+};`,
+    architecture: {
+      nodes: [
+        { id: 'client', label: 'Staff/Customer UI', x: 5, y: 50, type: 'external' },
+        { id: 'auth', label: 'JWT Gateway', x: 30, y: 50, type: 'service' },
+        { id: 'logic', label: 'Core MVC Engine', x: 60, y: 50, type: 'service' },
+        { id: 'mongo', label: 'MongoDB Cluster', x: 90, y: 50, type: 'db' }
+      ],
+      connections: [
+        { from: 'client', to: 'auth', label: 'HTTPS' },
+        { from: 'auth', to: 'logic', label: 'Verified Request' },
+        { from: 'logic', to: 'mongo', label: 'CRUD' }
+      ]
+    }
   }
 ];
 

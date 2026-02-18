@@ -1,9 +1,10 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import CustomCursor from "./components/atoms/CustomCursor";
+import PageTransition from "./components/atoms/PageTransition";
 import Lenis from "lenis";
 
 // Lazy Loaded Pages
@@ -29,6 +30,9 @@ const PageLoading = () => (
 );
 
 const SmoothScroll = ({ children }) => {
+  const { pathname } = useLocation();
+  const lenisRef = useRef(null);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -39,6 +43,8 @@ const SmoothScroll = ({ children }) => {
       wheelMultiplier: 1,
       touchMultiplier: 2,
     });
+
+    lenisRef.current = lenis;
 
     function raf(time) {
       lenis.raf(time);
@@ -51,6 +57,13 @@ const SmoothScroll = ({ children }) => {
       lenis.destroy();
     };
   }, []);
+
+  // Handle Scroll to Top on Route Change via Lenis
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+  }, [pathname]);
 
   return children;
 };
@@ -90,14 +103,6 @@ const LiquidBackground = () => {
   )
 }
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
-
 function App() {
   const location = useLocation();
 
@@ -107,7 +112,6 @@ function App() {
         <div className="bg-grid-pattern" />
         <LiquidBackground />
         <CustomCursor />
-        <ScrollToTop />
 
         <Header />
 
@@ -115,11 +119,11 @@ function App() {
           <AnimatePresence mode="wait">
             <Suspense fallback={<PageLoading />}>
               <Routes location={location} key={location.pathname}>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/work" element={<WorkPage />} />
-                <Route path="/work/:slug" element={<ProjectDetailsPage />} />
-                <Route path="/aboutme" element={<AboutPage />} />
-                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/" element={<PageTransition><Homepage /></PageTransition>} />
+                <Route path="/work" element={<PageTransition><WorkPage /></PageTransition>} />
+                <Route path="/work/:slug" element={<PageTransition><ProjectDetailsPage /></PageTransition>} />
+                <Route path="/aboutme" element={<PageTransition><AboutPage /></PageTransition>} />
+                <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
               </Routes>
             </Suspense>
           </AnimatePresence>
