@@ -6,6 +6,7 @@ import socialUrl from "../../constants/socialurls";
 import navdata from "../../constants/navdata";
 import MagneticButton from "../atoms/MagneticButton";
 import SocialLink from "../atoms/SocialLink";
+import SystemConsole from "../molecules/SystemConsole";
 
 function Footer() {
   const [time, setTime] = useState(new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false }));
@@ -110,6 +111,8 @@ function Footer() {
             </div>
           </div>
         </div>
+
+        <SystemConsole />
 
         {/* Legal & Version */}
         <div className="pt-12 flex flex-col md:flex-row justify-between items-center gap-6">

@@ -6,6 +6,7 @@ import ContactComp from "./comp/ContactComp";
 import GithubComp from "./comp/GithubComp";
 import TerminalHero from "./comp/TerminalHero";
 import OSSImpact from "./comp/OSSImpact";
+import DevLog from "./comp/DevLog";
 import { motion } from "framer-motion";
 
 const container = {
@@ -33,6 +34,7 @@ function Homepage() {
       <motion.div variants={item}><MinimalHero /></motion.div>
       <motion.div variants={item}><MinimalProjects /></motion.div>
       <motion.div variants={item}><OSSImpact /></motion.div>
+      <motion.div variants={item}><DevLog /></motion.div>
       <motion.div variants={item}><SkillsMatrix /></motion.div>
       <motion.div variants={item}><TerminalHero /></motion.div>
       <motion.div variants={item}><AboutComp /></motion.div>
