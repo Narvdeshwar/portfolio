@@ -2,10 +2,10 @@
 import { jspark, jsparkprime } from "../assets";
 
 export const projectsData = [
-  // --- Selected Work (Live Traffic & Clients) ---
+  // --- UI/UX Focused Frontend ---
   {
     slug: "jspark-ai",
-    category: "selected",
+    category: "frontend",
     title: "JSPARK AI",
     description: "AI-driven landing page & company portfolio hub.",
     longDescription: "A comprehensive digital presence for an AI consultancy firm. Built with a focus on futuristic aesthetics and high-performance rendering.",
@@ -16,7 +16,7 @@ export const projectsData = [
   },
   {
     slug: "jspark-prime",
-    category: "selected",
+    category: "frontend",
     title: "JSPARK Prime",
     description: "Premium client portfolio showcase platform.",
     longDescription: "A secondary platform for JSPARK, focusing on showcasing high-ticket client success stories with a minimal, luxury design language.",
@@ -25,22 +25,11 @@ export const projectsData = [
     links: { live: "https://jsparkprime.com/", github: "" },
     stats: { traffic: "5k/mo", status: "Live" }
   },
-  {
-    slug: "legal-check",
-    category: "selected",
-    title: "Legal Check Calc",
-    description: "Complex legal calculation tools for financial compliance.",
-    longDescription: "A suite of calculators for legal professionals to determine fees, interest, and compliance metrics. Optimized for accuracy and ease of use.",
-    image: jspark, // Placeholder
-    technologies: ["React", "TypeScript", "Vercel", "Shadcn UI"],
-    links: { live: "https://legal-check-calculators.vercel.app/", github: "" },
-    stats: { traffic: "2.5k/mo", status: "Beta" }
-  },
 
-  // --- Engineering Labs (Backend & Systems) ---
+  // --- Backend Engineering & Systems ---
   {
     slug: "distributed-task-queue",
-    category: "engineering",
+    category: "backend",
     title: "Distributed Task Queue",
     description: "High-performance async task processing with RabbitMQ.",
     longDescription: "A robust system designed to handle thousands of concurrent tasks. It features a custom retry mechanism, dead-letter queues, and real-time monitoring via WebSockets.",
@@ -76,7 +65,7 @@ func (w *Worker) retry(task *Task) {
   },
   {
     slug: "saas-iot-platform",
-    category: "engineering",
+    category: "backend",
     title: "SaaS IoT Platform",
     description: "Real-time sensor ingestion pipeline handling 10k+ events/sec.",
     longDescription: "An industrial IoT solution capable of ingesting high-frequency sensor data. Uses TimescaleDB for efficient time-series storage and gRPC for internal service communication.",
@@ -110,38 +99,8 @@ func (s *Server) Ingest(stream pb.IoT_IngestServer) error {
     }
   },
   {
-    slug: "ncrb-bi-dashboard",
-    category: "engineering",
-    title: "NCRB BI Dashboard",
-    description: "Crime analytics intelligence dashboard for government agencies.",
-    longDescription: "A data-heavy BI tool used for visualizing crime statistics across regions. Features include heatmaps, trend analysis charts, and automated PDF reporting.",
-    image: jsparkprime, // Placeholder
-    technologies: ["React", "D3.js", "Redux", "PostGIS"],
-    links: { live: "#", github: "https://github.com/Narvdeshwar/ncrb-analytics" },
-    stats: { stars: "28", status: "Stable" },
-    challenges: "Visualizing million+ data points on a browser heatmap without lagging. Implemented a canvas-based rendering engine for D3 instead of SVG.",
-    decisions: "PostGIS was essential for spatial queries, allowing us to find crime clusters within specific radius and administrative boundaries efficiently.",
-    codeSnippet: `// Spatial query for crime clustering
-SELECT ST_ClusterKMeans(geom, 5) OVER() 
-FROM crime_reports 
-WHERE city = 'Delhi';`,
-    architecture: {
-      nodes: [
-        { id: 'gov', label: 'Govt. API', x: 5, y: 50, type: 'external' },
-        { id: 'etl', label: 'ETL Pipeline', x: 30, y: 50, type: 'service' },
-        { id: 'postgis', label: 'PostGIS (Spatial)', x: 60, y: 50, type: 'db' },
-        { id: 'dashboard', label: 'React / D3 Engine', x: 90, y: 50, type: 'service' }
-      ],
-      connections: [
-        { from: 'gov', to: 'etl', label: 'Ingest' },
-        { from: 'etl', to: 'postgis', label: 'Query' },
-        { from: 'postgis', to: 'dashboard', label: 'Visualize' }
-      ]
-    }
-  },
-  {
     slug: "go-logstreamer",
-    category: "engineering",
+    category: "backend",
     title: "Go LogStreamer",
     description: "High-performance, concurrent log processing pipeline built in Go.",
     longDescription: "A specialized tool designed for low-latency log ingestion and processing. Built with a worker-pool architecture and zero-allocation logging principles to handle extreme throughput.",
@@ -174,7 +133,7 @@ func (p *Pipeline) Run(ctx context.Context) {
   },
   {
     slug: "event-notification-service",
-    category: "engineering",
+    category: "backend",
     title: "Event Notification Hub",
     description: "Scalable microservice for real-time notification dispatching.",
     longDescription: "An event-driven service that orchestrates multi-channel notifications (Push, Email, SMS) with guaranteed delivery and intelligent retry mechanisms.",
@@ -209,7 +168,7 @@ func (d *Dispatcher) Dispatch(event *Event) error {
   },
   {
     slug: "restaurant-backend",
-    category: "engineering",
+    category: "backend",
     title: "Restaurant OS (API)",
     description: "Comprehensive backend architecture for modern restaurant management.",
     longDescription: "A production-grade REST API featuring complex resource management, role-based access control (RBAC), and automated inventory tracking.",
@@ -237,7 +196,50 @@ export const createOrder = async (req: Request, res: Response) => {
         { from: 'logic', to: 'mongo', label: 'CRUD' }
       ]
     }
-  }
+  },
+
+  // --- Full Fledged Applications & Products ---
+  {
+    slug: "ncrb-bi-dashboard",
+    category: "fullstack",
+    title: "NCRB BI Dashboard",
+    description: "Crime analytics intelligence dashboard for government agencies.",
+    longDescription: "A data-heavy BI tool used for visualizing crime statistics across regions. Features include heatmaps, trend analysis charts, and automated PDF reporting.",
+    image: jsparkprime, // Placeholder
+    technologies: ["React", "D3.js", "Redux", "PostGIS"],
+    links: { live: "#", github: "https://github.com/Narvdeshwar/ncrb-analytics" },
+    stats: { stars: "28", status: "Stable" },
+    challenges: "Visualizing million+ data points on a browser heatmap without lagging. Implemented a canvas-based rendering engine for D3 instead of SVG.",
+    decisions: "PostGIS was essential for spatial queries, allowing us to find crime clusters within specific radius and administrative boundaries efficiently.",
+    codeSnippet: `// Spatial query for crime clustering
+SELECT ST_ClusterKMeans(geom, 5) OVER() 
+FROM crime_reports 
+WHERE city = 'Delhi';`,
+    architecture: {
+      nodes: [
+        { id: 'gov', label: 'Govt. API', x: 5, y: 50, type: 'external' },
+        { id: 'etl', label: 'ETL Pipeline', x: 30, y: 50, type: 'service' },
+        { id: 'postgis', label: 'PostGIS (Spatial)', x: 60, y: 50, type: 'db' },
+        { id: 'dashboard', label: 'React / D3 Engine', x: 90, y: 50, type: 'service' }
+      ],
+      connections: [
+        { from: 'gov', to: 'etl', label: 'Ingest' },
+        { from: 'etl', to: 'postgis', label: 'Query' },
+        { from: 'postgis', to: 'dashboard', label: 'Visualize' }
+      ]
+    }
+  },
+  {
+    slug: "legal-check",
+    category: "fullstack",
+    title: "Legal Check Calc",
+    description: "Complex legal calculation tools for financial compliance.",
+    longDescription: "A suite of calculators for legal professionals to determine fees, interest, and compliance metrics. Optimized for accuracy and ease of use.",
+    image: jspark, // Placeholder
+    technologies: ["React", "TypeScript", "Vercel", "Shadcn UI"],
+    links: { live: "https://legal-check-calculators.vercel.app/", github: "" },
+    stats: { traffic: "2.5k/mo", status: "Beta" }
+  },
 ];
 
 export default projectsData;
