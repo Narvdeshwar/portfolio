@@ -154,7 +154,6 @@ const TerminalHero = () => {
               <form onSubmit={handleSubmit} className="flex gap-3">
                 <span className="text-blue-500">➜</span>
                 <input
-                  autoFocus
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}

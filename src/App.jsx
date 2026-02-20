@@ -58,11 +58,13 @@ const SmoothScroll = ({ children }) => {
     };
   }, []);
 
-  // Handle Scroll to Top on Route Change via Lenis
+  // Handle Scroll to Top on Route Change and Initial Mount
   useEffect(() => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });
     }
+    // Also force browser scroll to top just in case
+    window.scrollTo(0, 0);
   }, [pathname]);
 
   return children;

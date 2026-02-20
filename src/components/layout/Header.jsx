@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,11 +10,19 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const logoRef = useRef(null);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
+
+    // Explicitly focus logo on mount to ensure focus starts at the top
+    if (logoRef.current) {
+      logoRef.current.focus();
+    }
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -32,7 +40,11 @@ function Header() {
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
           {/* Logo */}
-          <Link to="/" className="text-white font-display font-bold text-xl tracking-tight z-50">
+          <Link
+            to="/"
+            ref={logoRef}
+            className="text-white font-display font-bold text-xl tracking-tight z-50 focus:outline-none"
+          >
             NARVDESHWAR<span className="text-blue-500">.</span>
           </Link>
 
