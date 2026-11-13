@@ -1,21 +1,9 @@
-import MinimalHero from "./comp/MinimalHero";
-import MinimalProjects from "./comp/MinimalProjects";
-import { SkillsComp } from "./comp/SkillsComp";
-import AboutComp from "./comp/AboutComp";
-import ContactComp from "./comp/ContactComp";
-import GithubComp from "./comp/GithubComp";
+import HeroSection from "./hero/HeroSection";
 
-function Homepage() {
+export default function Homepage() {
   return (
-    <>
-      <MinimalHero />
-      <MinimalProjects />
-      <SkillsComp />
-      <AboutComp />
-      <GithubComp />
-      <ContactComp />
-    </>
+    <div className="w-full">
+      <HeroSection />
+    </div>
   );
 }
-
-export default Homepage;

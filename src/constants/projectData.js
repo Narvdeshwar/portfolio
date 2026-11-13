@@ -1,76 +1,95 @@
-
-import { jspark, jsparkprime } from "../assets";
-
-export const projectsData = [
-  // --- Selected Work (Live Traffic & Clients) ---
+export const PROJECTS_DATA = [
   {
-    slug: "jspark-ai",
-    category: "selected",
-    title: "JSPARK AI",
-    description: "AI-driven landing page & company portfolio hub.",
-    longDescription: "A comprehensive digital presence for an AI consultancy firm. Built with a focus on futuristic aesthetics and high-performance rendering.",
-    image: jspark,
-    technologies: ["React", "TailwindCSS", "Framer Motion", "Vite"],
-    links: { live: "https://jspark.ai", github: "" },
-    stats: { traffic: "12k/mo", status: "Live" }
+    id: "opsvision",
+    index: "01",
+    title: "OPSVISION",
+    subtitle: "NCRB Crime Analytics & BI Platform",
+    category: "government",
+    tag: "GOVERNMENT / NCRB",
+    description:
+      "Enterprise intelligence and BI dashboard engineered for national crime record visualization, geospatial mapping, and predictive reporting.",
+    stack: ["Go", "React", "PostGIS", "D3.js", "Redis"],
+    link: null,
+    status: "RESTRICTED / DEPLOYED",
   },
   {
-    slug: "jspark-prime",
-    category: "selected",
-    title: "JSPARK Prime",
-    description: "Premium client portfolio showcase platform.",
-    longDescription: "A secondary platform for JSPARK, focusing on showcasing high-ticket client success stories with a minimal, luxury design language.",
-    image: jsparkprime,
-    technologies: ["Next.js", "React", "TailwindCSS"],
-    links: { live: "https://jsparkprime.com/", github: "" },
-    stats: { traffic: "5k/mo", status: "Live" }
+    id: "opshydra",
+    index: "02",
+    title: "OPSHYDRA",
+    subtitle: "IMD Flash-Flood Prediction & Hydrology Pipeline",
+    category: "government",
+    tag: "GOVERNMENT / IMD",
+    description:
+      "Real-time meteorological and hydrological intelligence pipeline processing sensor telemetry for early flash-flood warning and simulation.",
+    stack: ["Go", "TimescaleDB", "GeoSpatial", "Telemetry", "Kafka"],
+    link: null,
+    status: "MISSION-CRITICAL",
   },
   {
-    slug: "legal-check",
-    category: "selected",
-    title: "Legal Check Calc",
-    description: "Complex legal calculation tools for financial compliance.",
-    longDescription: "A suite of calculators for legal professionals to determine fees, interest, and compliance metrics. Optimized for accuracy and ease of use.",
-    image: jspark, // Placeholder
-    technologies: ["React", "TypeScript", "Vercel", "Shadcn UI"],
-    links: { live: "https://legal-check-calculators.vercel.app/", github: "" },
-    stats: { traffic: "2.5k/mo", status: "Beta" }
-  },
-
-  // --- Engineering Labs (Backend & Systems) ---
-  {
-    slug: "distributed-task-queue",
-    category: "engineering",
-    title: "Distributed Task Queue",
-    description: "High-performance async task processing with RabbitMQ.",
-    longDescription: "A robust system designed to handle thousands of concurrent tasks. It features a custom retry mechanism, dead-letter queues, and real-time monitoring via WebSockets.",
-    image: jspark, // Placeholder
-    technologies: ["Golang", "RabbitMQ", "Redis", "Docker", "MongoDB"],
-    links: { live: "#", github: "https://github.com/Narvdeshwar/distributed-task-queue" },
-    stats: { stars: "45", status: "Active" }
+    id: "jspark-ai",
+    index: "03",
+    title: "JSPARK.AI",
+    subtitle: "Autonomous AI Agency & Engineering Hub",
+    category: "production",
+    tag: "PRODUCTION / AI",
+    description:
+      "AI solutions agency landing ecosystem engineered with fluid interactions, dynamic asset pipelines, and ultra-low latency rendering.",
+    stack: ["React", "TailwindCSS", "Framer Motion", "Vite"],
+    link: "https://jspark.ai",
+    status: "LIVE PRODUCTION",
   },
   {
-    slug: "saas-iot-platform",
-    category: "engineering",
-    title: "SaaS IoT Platform",
-    description: "Real-time sensor ingestion pipeline handling 10k+ events/sec.",
-    longDescription: "An industrial IoT solution capable of ingesting high-frequency sensor data. Uses TimescaleDB for efficient time-series storage and gRPC for internal service communication.",
-    image: jsparkprime, // Placeholder
-    technologies: ["Golang", "TimescaleDB", "gRPC", "Kafka"],
-    links: { live: "#", github: "https://github.com/Narvdeshwar/iot-platform-core" },
-    stats: { stars: "32", status: "Building" }
+    id: "jspark-prime",
+    index: "04",
+    title: "JSPARK PRIME",
+    subtitle: "Enterprise Client Portfolio & Deal Showcase",
+    category: "production",
+    tag: "PRODUCTION / SHOWCASE",
+    description:
+      "High-ticket client showcase platform crafted with strict minimalist typography, asset optimization, and responsive design systems.",
+    stack: ["Next.js", "React", "TypeScript", "TailwindCSS"],
+    link: "https://jsparkprime.com/",
+    status: "LIVE PRODUCTION",
   },
   {
-    slug: "ncrb-bi-dashboard",
-    category: "engineering",
-    title: "NCRB BI Dashboard",
-    description: "Crime analytics intelligence dashboard for government agencies.",
-    longDescription: "A data-heavy BI tool used for visualizing crime statistics across regions. Features include heatmaps, trend analysis charts, and automated PDF reporting.",
-    image: jsparkprime, // Placeholder
-    technologies: ["React", "D3.js", "Redux", "PostGIS"],
-    links: { live: "#", github: "https://github.com/Narvdeshwar/ncrb-analytics" },
-    stats: { stars: "28", status: "Stable" }
-  }
+    id: "nph-studio",
+    index: "05",
+    title: "NPH STUDIO",
+    subtitle: "Creative Architecture & Design Engineering",
+    category: "production",
+    tag: "PRODUCTION / STUDIO",
+    description:
+      "Portfolio platform for an architectural studio emphasizing high-resolution visual rendering, spatial grid aesthetics, and performance.",
+    stack: ["React", "TailwindCSS", "Vite", "Motion"],
+    link: "https://nph-studio.in/",
+    status: "LIVE PRODUCTION",
+  },
+  {
+    id: "aibulletin",
+    index: "06",
+    title: "AI BULLETIN",
+    subtitle: "Real-time AI Intelligence & News Aggregator",
+    category: "production",
+    tag: "PRODUCTION / MEDIA",
+    description:
+      "Automated curation and digest platform tracking generative AI breakthroughs, model releases, and research papers with automated scrapers.",
+    stack: ["React", "Node.js", "Automated Scrapers", "Vercel"],
+    link: "https://aibulletin.in/",
+    status: "LIVE PRODUCTION",
+  },
+  {
+    id: "sachin-sharma",
+    index: "07",
+    title: "SACHIN SHARMA LMS",
+    subtitle: "High-Traffic Cohort Education Platform",
+    category: "production",
+    tag: "PRODUCTION / LMS",
+    description:
+      "Course delivery and student learning management system architected for concurrent video streaming, cohort access control, and payment processing.",
+    stack: ["React", "Video CDN", "Stripe/Razorpay", "TailwindCSS"],
+    link: "https://courses.sachinnssharma.com/",
+    status: "LIVE PRODUCTION",
+  },
 ];
 
-export default projectsData;
+export default PROJECTS_DATA;
