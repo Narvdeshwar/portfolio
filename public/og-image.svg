@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#000000" />
+  
+  <!-- Subtle Grid lines -->
+  <line x1="80" y1="0" x2="80" y2="630" stroke="#1f1f1f" stroke-width="1" />
+  <line x1="1120" y1="0" x2="1120" y2="630" stroke="#1f1f1f" stroke-width="1" />
+  <line x1="0" y1="550" x2="1200" y2="550" stroke="#1f1f1f" stroke-width="1" />
+  
+  <!-- Badge -->
+  <rect x="80" y="140" width="230" height="34" rx="2" fill="#0d0d0d" stroke="#4BE1C4" stroke-width="1" />
+  <circle cx="100" cy="157" r="4" fill="#4BE1C4" />
+  <text x="114" y="162" fill="#4BE1C4" font-family="'IBM Plex Sans', sans-serif" font-size="12" font-weight="600" letter-spacing="1">AVAILABLE FOR WORK</text>
+
+  <!-- Title -->
+  <text x="80" y="270" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="64" font-weight="700" letter-spacing="-1">NARVDESHWAR</text>
+  <text x="80" y="340" fill="#4BE1C4" font-family="'Inter', sans-serif" font-size="36" font-weight="600">Software Engineer</text>
+  
+  <!-- Subtitle -->
+  <text x="80" y="410" fill="#A6A6A6" font-family="'Inter', sans-serif" font-size="22" font-weight="400">Building fast, reliable backend systems and scalable web applications.</text>
+  
+  <!-- Footer Tag -->
+  <text x="80" y="590" fill="#666666" font-family="'IBM Plex Sans', sans-serif" font-size="14" letter-spacing="1">GOLANG • DISTRIBUTED SYSTEMS • POSTGRESQL • REACT • CLOUD</text>
+</svg>
