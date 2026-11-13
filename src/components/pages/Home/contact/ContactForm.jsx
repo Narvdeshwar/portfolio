@@ -11,10 +11,10 @@ export default function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const mailto = `mailto:${PROFILE_DATA.links.email}?subject=Project Inquiry from ${encodeURIComponent(
+    const mailto = `mailto:${PROFILE_DATA.links.email}?subject=Message from ${encodeURIComponent(
       formData.name
     )}&body=${encodeURIComponent(
-      `From: ${formData.name} (${formData.email})\n\nMessage:\n${formData.message}`
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
     )}`;
     window.location.href = mailto;
   };
@@ -23,7 +23,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6 md:p-8 border border-[#262626] bg-[#000000]">
       <div className="flex flex-col gap-1">
         <label htmlFor="contact-name" className="font-plex-caption text-[11px] text-[#A6A6A6]">
-          NAME / ORGANIZATION
+          YOUR NAME
         </label>
         <input
           id="contact-name"
@@ -32,14 +32,14 @@ export default function ContactForm() {
           required
           value={formData.name}
           onChange={handleChange}
-          placeholder="e.g. Commander / Lead Architect"
-          className="w-full h-[41px] px-3 bg-[#0D0D0D] border border-[#262626] rounded-[3px] text-sm text-[#FFFFFF] placeholder-[#525252] focus:outline-none focus:border-[#4BE1C4] transition-colors font-mono"
+          placeholder="e.g. Alex Sharma"
+          className="w-full h-[41px] px-3 bg-[#0D0D0D] border border-[#262626] rounded-[3px] text-sm text-[#FFFFFF] placeholder-[#525252] focus:outline-none focus:border-[#4BE1C4] transition-colors"
         />
       </div>
 
       <div className="flex flex-col gap-1">
         <label htmlFor="contact-email" className="font-plex-caption text-[11px] text-[#A6A6A6]">
-          EMAIL ADDRESS
+          YOUR EMAIL
         </label>
         <input
           id="contact-email"
@@ -48,14 +48,14 @@ export default function ContactForm() {
           required
           value={formData.email}
           onChange={handleChange}
-          placeholder="name@domain.com"
-          className="w-full h-[41px] px-3 bg-[#0D0D0D] border border-[#262626] rounded-[3px] text-sm text-[#FFFFFF] placeholder-[#525252] focus:outline-none focus:border-[#4BE1C4] transition-colors font-mono"
+          placeholder="alex@company.com"
+          className="w-full h-[41px] px-3 bg-[#0D0D0D] border border-[#262626] rounded-[3px] text-sm text-[#FFFFFF] placeholder-[#525252] focus:outline-none focus:border-[#4BE1C4] transition-colors"
         />
       </div>
 
       <div className="flex flex-col gap-1">
         <label htmlFor="contact-message" className="font-plex-caption text-[11px] text-[#A6A6A6]">
-          SYSTEM REQUIREMENTS / MESSAGE
+          YOUR MESSAGE
         </label>
         <textarea
           id="contact-message"
@@ -64,13 +64,13 @@ export default function ContactForm() {
           required
           value={formData.message}
           onChange={handleChange}
-          placeholder="Brief project scope or inquiry..."
-          className="w-full p-3 bg-[#0D0D0D] border border-[#262626] rounded-[3px] text-sm text-[#FFFFFF] placeholder-[#525252] focus:outline-none focus:border-[#4BE1C4] transition-colors resize-none font-mono"
+          placeholder="Tell me about your project or role..."
+          className="w-full p-3 bg-[#0D0D0D] border border-[#262626] rounded-[3px] text-sm text-[#FFFFFF] placeholder-[#525252] focus:outline-none focus:border-[#4BE1C4] transition-colors resize-none"
         />
       </div>
 
       <Button type="submit" variant="primary" size="default" className="mt-2 w-full">
-        DISPATCH TRANSMISSION
+        SEND MESSAGE
       </Button>
     </form>
   );

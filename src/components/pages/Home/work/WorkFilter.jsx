@@ -1,8 +1,8 @@
 export default function WorkFilter({ activeFilter, onSelectFilter }) {
   const filters = [
-    { id: "all", label: "ALL SYSTEMS" },
-    { id: "government", label: "GOVERNMENT & MISSION-CRITICAL" },
-    { id: "production", label: "PRODUCTION & CLIENT PLATFORMS" },
+    { id: "all", label: "ALL PROJECTS" },
+    { id: "government", label: "GOVERNMENT WORK" },
+    { id: "production", label: "LIVE WEB APPS" },
   ];
 
   return (

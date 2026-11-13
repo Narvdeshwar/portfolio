@@ -7,16 +7,16 @@ export default function CapabilitiesHeader() {
         </span>
         <span className="text-[#262626]">/</span>
         <span className="font-plex-caption text-[#A6A6A6]">
-          TECHNICAL SPECIFICATION
+          SKILLS & TOOLS
         </span>
       </div>
 
       <div className="flex items-baseline justify-between border-b border-[#262626] pb-4">
         <h2 className="font-display-md text-[#FFFFFF] tracking-[-0.52px] uppercase">
-          CORE CAPABILITIES
+          TECH STACK & SKILLS
         </h2>
         <span className="font-plex-caption text-xs text-[#A6A6A6]">
-          [ENGINEERING MATRIX]
+          [WHAT I WORK WITH]
         </span>
       </div>
     </div>

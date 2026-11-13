@@ -3,7 +3,7 @@ import PROFILE_DATA from "../../../../constants/profileData";
 
 export default function ContactChannels() {
   const [copied, setCopied] = useState(false);
-  const { links, status } = PROFILE_DATA;
+  const { links } = PROFILE_DATA;
 
   const copyEmail = () => {
     navigator.clipboard.writeText(links.email);
@@ -15,7 +15,7 @@ export default function ContactChannels() {
     <div className="flex flex-col gap-6 justify-between p-6 md:p-8 border border-[#262626] bg-[#000000]">
       <div className="flex flex-col gap-4">
         <span className="font-plex-caption text-xs text-[#A6A6A6]">
-          PRIMARY DIRECT CHANNEL
+          EMAIL ADDRESS
         </span>
 
         <div className="flex flex-col gap-2">
@@ -31,18 +31,18 @@ export default function ContactChannels() {
             onClick={copyEmail}
             className="self-start font-plex-caption text-[11px] text-[#4BE1C4] hover:text-[#FFFFFF] cursor-pointer tracking-[0.84px] pt-1"
           >
-            {copied ? "✓ COPIED TO CLIPBOARD" : "[CLICK TO COPY ADDRESS]"}
+            {copied ? "✓ COPIED TO CLIPBOARD" : "[CLICK TO COPY EMAIL]"}
           </button>
         </div>
 
         <p className="text-sm text-[#A6A6A6] leading-relaxed pt-2">
-          Available for mission-critical backend architecture, high-throughput systems consulting, and senior engineering roles.
+          I am available for backend engineering, full-stack systems development, and exciting engineering opportunities.
         </p>
       </div>
 
       <div className="flex flex-col gap-4 pt-6 border-t border-[#262626]">
         <span className="font-plex-caption text-[10px] text-[#737373]">
-          VERIFIED TRANSMISSION ENDPOINTS
+          ONLINE PROFILES & RESUME
         </span>
 
         <div className="flex flex-wrap items-center gap-4">
@@ -70,7 +70,7 @@ export default function ContactChannels() {
             rel="noopener noreferrer"
             className="font-plex-btn text-[11px] text-[#4BE1C4] hover:text-[#FFFFFF] transition-colors tracking-[0.84px]"
           >
-            CURRICULUM VITAE ↗
+            VIEW RESUME ↗
           </a>
         </div>
       </div>

@@ -7,16 +7,16 @@ export default function ContactHeader() {
         </span>
         <span className="text-[#262626]">/</span>
         <span className="font-plex-caption text-[#A6A6A6]">
-          TRANSMISSION CHANNEL
+          CONTACT
         </span>
       </div>
 
       <div className="flex items-baseline justify-between border-b border-[#262626] pb-4">
         <h2 className="font-display-md text-[#FFFFFF] tracking-[-0.52px] uppercase">
-          INITIATE CONTACT
+          GET IN TOUCH
         </h2>
         <span className="font-plex-caption text-xs text-[#4BE1C4]">
-          [OPEN FOR Q2 2026]
+          [OPEN FOR WORK]
         </span>
       </div>
     </div>

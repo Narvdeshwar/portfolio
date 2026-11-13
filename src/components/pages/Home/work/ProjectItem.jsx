@@ -41,9 +41,9 @@ export default function ProjectItem({ project }) {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-plex-btn text-[11px] text-[#4BE1C4] hover:text-[#FFFFFF] transition-colors tracking-[0.84px]"
+                className="inline-flex items-center gap-1.5 font-plex-btn text-[11px] text-[#4BE1C4] hover:text-[#FFFFFF] transition-colors tracking-[0.84px]"
               >
-                ACCESS PLATFORM
+                VISIT SITE
                 <span className="text-xs transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                   ↗
                 </span>

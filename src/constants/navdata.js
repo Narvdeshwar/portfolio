@@ -1,9 +1,10 @@
 export const NAV_ITEMS = [
   { label: "OVERVIEW", href: "#hero" },
-  { label: "SYSTEMS", href: "#work" },
-  { label: "CAPABILITIES", href: "#stack" },
+  { label: "ABOUT", href: "#about" },
+  { label: "PROJECTS", href: "#work" },
+  { label: "TECH STACK", href: "#stack" },
   { label: "EXPERIENCE", href: "#experience" },
-  { label: "TRANSMIT", href: "#contact" },
+  { label: "CONTACT", href: "#contact" },
 ];
 
 export default NAV_ITEMS;
