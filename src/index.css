@@ -1,106 +1,86 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui;
-  --font-display: "Outfit", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-
-  --color-bg-primary: #050505;
-  --color-text-primary: #ededed;
-  --color-text-secondary: #888888;
-  --color-accent: #3b82f6;
-}
-
 :root {
-  --color-bg-primary: #050505;
-  --color-text-primary: #ededed;
-  --color-text-secondary: #888888;
-  --color-accent: #3b82f6;
+  --color-canvas: #000000;
+  --color-primary: #4BE1C4;
+  --color-ink: #FFFFFF;
+  --color-hairline: #262626;
+  --color-hairline-light: #C9C9C9;
+  --color-text-muted: #A6A6A6;
+  --color-surface-raised: #141414;
 
-  --font-sans: "Plus Jakarta Sans", sans-serif;
-  --font-display: "Outfit", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-plex: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  font-family: var(--font-sans);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-inter);
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
-  line-height: 1.5;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-display);
-  color: #fff;
-  letter-spacing: -0.02em;
-  font-weight: 500;
+/* Typography Utility Classes adhering to design.md */
+.font-display-lg {
+  font-family: var(--font-inter);
+  font-size: clamp(32px, 5vw, 58px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.72px;
 }
 
+.font-display-md {
+  font-family: var(--font-inter);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.52px;
+}
+
+.font-plex-btn {
+  font-family: var(--font-plex);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.84px;
+  text-transform: uppercase;
+}
+
+.font-plex-label {
+  font-family: var(--font-plex);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.84px;
+  text-transform: uppercase;
+}
+
+.font-plex-caption {
+  font-family: var(--font-plex);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
+}
+
+/* Scrollbar Minimalist */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
-
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #000000;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #262626;
   border-radius: 0px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-.bg-grid-pattern {
-  background-size: 60px 60px;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.text-balance {
-  text-wrap: balance;
-}
-
-.reveal-text {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-}
-
-.glass-panel {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.gradient-title {
-  background: linear-gradient(135deg, #fff 0%, var(--color-accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+  background: #4BE1C4;
 }

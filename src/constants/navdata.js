@@ -1,8 +1,10 @@
-const navdata = [
-  { title: "home", link: "/" },
-  { title: "works", link: "/work" },
-  { title: "about-me", link: "/aboutme" },
-  { title: "contacts", link: "/contact" },
+export const NAV_ITEMS = [
+  { label: "OVERVIEW", href: "#hero" },
+  { label: "ABOUT", href: "#about" },
+  { label: "PROJECTS", href: "#work" },
+  { label: "TECH STACK", href: "#stack" },
+  { label: "EXPERIENCE", href: "#experience" },
+  { label: "CONTACT", href: "#contact" },
 ];
 
-export default navdata;
+export default NAV_ITEMS;
